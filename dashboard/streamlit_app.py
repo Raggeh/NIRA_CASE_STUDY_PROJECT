@@ -8,6 +8,16 @@ from nira_data import GROUP_NAMES, TASK_NAMES, load, model_name
 
 st.set_page_config(page_title="NIRA Research Dashboard", page_icon="N", layout="wide")
 
+_plotly_chart = st.plotly_chart
+
+
+def _plotly_chart_unthemed(figure, *args, **kwargs):
+    kwargs["theme"] = None
+    return _plotly_chart(figure, *args, **kwargs)
+
+
+st.plotly_chart = _plotly_chart_unthemed
+
 PALETTE = ["#0b4f86", "#1d6fb8", "#3d97d4", "#7ec8f8", "#9fd4f5", "#d5ebf8"]
 
 
@@ -22,16 +32,23 @@ def ink():
 
 
 def layout(figure, height=320):
+    color = ink()
+    dark = st.session_state.get("theme") == "dark"
     figure.update_layout(
         height=height,
-        margin=dict(l=8, r=12, t=40, b=8),
-        font=dict(family="Poppins", size=13, color=ink()),
+        margin=dict(l=8, r=12, t=48, b=8),
+        font=dict(family="Poppins", size=13, color=color),
+        title=dict(font=dict(family="Poppins", size=16, color=color)),
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, x=0),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, x=0, font=dict(family="Poppins", size=13, color=color)),
     )
-    figure.update_xaxes(showgrid=False)
-    figure.update_yaxes(gridcolor="rgba(29,111,184,0.15)")
+    figure.update_xaxes(showgrid=False, tickfont=dict(color=color), title_font=dict(color=color))
+    figure.update_yaxes(
+        gridcolor="rgba(126,200,248,0.28)" if dark else "rgba(29,111,184,0.15)",
+        tickfont=dict(color=color),
+        title_font=dict(color=color),
+    )
     return figure
 
 
@@ -53,8 +70,9 @@ def kpis(items):
     cards = []
     for icon, value, label in items:
         cards.append(
-            f'<article class="kpi" style="box-sizing:border-box;padding:26px 22px 22px 44px;min-height:168px;">'
-            f'<span class="mi">{icon}</span><b>{value}</b><small>{label}</small></article>'
+            f'<article class="kpi" style="box-sizing:border-box;padding:26px 22px 22px 44px !important;min-height:168px;">'
+            f'<span class="mi" style="display:block;margin:0 0 11px 0;">{icon}</span>'
+            f'<b style="display:block;margin:0;">{value}</b><small>{label}</small></article>'
         )
     st.markdown(f'<div class="kpi-grid">{"".join(cards)}</div>', unsafe_allow_html=True)
 
@@ -263,6 +281,14 @@ def apply_theme():
         .stApp:has(.theme-dark) div[data-testid="stAlert"] span,
         .stApp:has(.theme-dark) div[data-testid="stNotification"] p { color: #0e3d66 !important; }
         .stApp:has(.theme-dark) .hero, .stApp:has(.theme-dark) .hero p, .stApp:has(.theme-dark) .hero h1 { color: white; }
+        .stApp:has(.theme-dark) .js-plotly-plot .xaxislayer-above text,
+        .stApp:has(.theme-dark) .js-plotly-plot .yaxislayer-above text,
+        .stApp:has(.theme-dark) .js-plotly-plot .g-gtitle text,
+        .stApp:has(.theme-dark) .js-plotly-plot .g-xtitle text,
+        .stApp:has(.theme-dark) .js-plotly-plot .g-ytitle text,
+        .stApp:has(.theme-dark) .js-plotly-plot .legend text {
+          fill: #e7f3fb !important;
+        }
         .page-classification { display: none; }
         .stApp:has(.page-classification) .kpi b { font-size: 22px; }
         .stApp:has(.page-classification) .kpi small { font-size: 13px; }
@@ -343,7 +369,7 @@ def overview():
         height=420,
         margin=dict(l=16, r=16, t=48, b=64),
         title=dict(text="Sentiment counts", font=dict(size=16, family="Poppins", color=ink()), x=0, xanchor="left", y=0.98, yanchor="top"),
-        legend=dict(orientation="h", yanchor="top", y=-0.18, x=0, xanchor="left", font=dict(size=14, family="Poppins")),
+        legend=dict(orientation="h", yanchor="top", y=-0.18, x=0, xanchor="left", font=dict(size=14, family="Poppins", color=ink())),
         font=dict(family="Poppins", size=14, color=ink()),
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",
@@ -632,7 +658,7 @@ def classification():
         height=460,
         margin=dict(l=16, r=16, t=64, b=110),
         title=dict(text=TASK_NAMES[task], font=dict(size=16, family="Poppins", color=ink()), x=0, xanchor="left", y=0.98, yanchor="top"),
-        legend=dict(orientation="h", yanchor="top", y=-0.38, x=0, xanchor="left"),
+        legend=dict(orientation="h", yanchor="top", y=-0.38, x=0, xanchor="left", font=dict(family="Poppins", size=13, color=ink())),
         font=dict(family="Poppins", size=13, color=ink()),
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",

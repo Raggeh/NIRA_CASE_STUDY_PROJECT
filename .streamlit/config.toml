@@ -5,7 +5,7 @@ backgroundColor = "#f3f8fc"
 secondaryBackgroundColor = "#ffffff"
 textColor = "#0e2a43"
 font = "Poppins"
-baseFontSize = 22
+baseFontSize = 16
 
 [[theme.fontFaces]]
 family = "Poppins"

@@ -100,7 +100,7 @@ def apply_theme():
         <style>
         .stApp { background: #f3f8fc; overflow-x: hidden; }
         [data-testid="stMainBlockContainer"] {
-          padding-top: 0.85rem !important;
+          padding-top: 0.35rem !important;
           max-width: none !important;
           width: 100% !important;
         }
@@ -119,60 +119,65 @@ def apply_theme():
         }
         [data-testid="stSidebar"] {
           background: linear-gradient(180deg, #0c4f86 0%, #08345c 100%);
-          width: 312px !important;
-          min-width: 312px !important;
+          width: 248px !important;
+          min-width: 248px !important;
           overflow-x: hidden;
           overflow-y: auto;
+        }
+        [data-testid="stSidebarHeader"] {
+          height: auto !important;
+          min-height: 0 !important;
+          padding: 4px 8px 0 !important;
         }
         [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] label, [data-testid="stSidebar"] a {
           color: #e8f4fc;
         }
         [data-testid="stSidebarContent"] {
           display: flex; flex-direction: column; height: auto; min-height: 100%;
-          max-height: none; overflow: visible; padding: 16px 16px 22px; box-sizing: border-box;
+          max-height: none; overflow: visible; padding: 4px 10px 12px; box-sizing: border-box;
         }
         [data-testid="stSidebarNav"] {
           order: 4; flex: 0 0 auto; min-height: 0; max-height: none;
-          overflow: visible; padding: 8px 2px 12px;
+          overflow: visible; padding: 2px 0 8px;
         }
-        [data-testid="stSidebarNav"] ul { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0 2px 8px 0; }
+        [data-testid="stSidebarNav"] ul { display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 0; }
         [data-testid="stSidebarNav"]::-webkit-scrollbar { width: 8px; }
         [data-testid="stSidebarNav"]::-webkit-scrollbar-thumb { background: rgba(232, 244, 252, 0.45); border-radius: 8px; }
         [data-testid="stSidebarNav"] a {
-          border-radius: 14px;
+          border-radius: 12px;
           border: 1px solid rgba(214, 232, 248, 0.45);
-          padding: 0.62rem 0.9rem;
+          padding: 0.38rem 0.7rem;
           background: rgba(6, 32, 58, 0.28);
         }
         [data-testid="stSidebarNav"] a[aria-current="page"] { background: #1d6fb8; border-color: #7ec8f8; }
-        [data-testid="stSidebarNav"] a, [data-testid="stSidebarNav"] a span { font-size: 16px !important; }
-        [data-testid="stSidebarNav"] a [data-testid="stIconMaterial"] { font-size: 20px !important; }
+        [data-testid="stSidebarNav"] a, [data-testid="stSidebarNav"] a span { font-size: 14px !important; }
+        [data-testid="stSidebarNav"] a [data-testid="stIconMaterial"] { font-size: 18px !important; }
         .hero {
           background: linear-gradient(120deg, #0b4f86 0%, #1d7ed6 58%, #7ec8f8 130%);
-          color: white; border-radius: 22px; border-top-left-radius: 32px; border-top-right-radius: 32px;
-          padding: 44px 40px 40px; margin-bottom: 18px;
+          color: white; border-radius: 18px; border-top-left-radius: 22px; border-top-right-radius: 22px;
+          padding: 22px 26px 18px; margin-bottom: 12px;
           position: relative; overflow: hidden;
         }
         .hero:after {
           content: ""; position: absolute; right: -24px; top: -40px; width: 120px; height: 120px;
           border-radius: 50%; background: rgba(255,255,255,0.12);
         }
-        .hero .kicker { letter-spacing: 0.08em; font-size: 15px; opacity: 0.9; margin: 0 0 10px; }
-        .hero h1 { margin: 0 0 12px; font-size: 42px; letter-spacing: -0.03em; line-height: 1.15; }
-        .hero p { margin: 0; max-width: 820px; font-size: 18px; line-height: 1.5; color: rgba(255,255,255,0.94); }
+        .hero .kicker { letter-spacing: 0.08em; font-size: 12px; opacity: 0.9; margin: 0 0 6px; }
+        .hero h1 { margin: 0 0 8px; font-size: 30px; letter-spacing: -0.03em; line-height: 1.15; }
+        .hero p { margin: 0; max-width: 820px; font-size: 15px; line-height: 1.45; color: rgba(255,255,255,0.94); }
         .hero-icon { font-size: 20px; vertical-align: -3px; margin-right: 8px; }
-        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin: 12px 0 20px; }
-        .kpi { background: white; border: 1px solid #d5e8f6; border-radius: 20px; padding: 26px 24px 28px; min-height: 156px; box-shadow: 0 8px 20px rgba(12, 79, 134, 0.05); overflow: visible; }
-        .kpi .mi { color: #1d6fb8; font-size: 28px; }
-        .kpi b { display: block; margin: 16px 0 0; font-size: 40px; color: #0b4f86; line-height: 1.15; }
-        .kpi small { display: block; margin-top: 8px; color: #3e627f; font-size: 16px; line-height: 1.4; }
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 8px 0 14px; }
+        .kpi { background: white; border: 1px solid #d5e8f6; border-radius: 16px; padding: 12px 16px 14px; min-height: 108px; box-shadow: 0 8px 20px rgba(12, 79, 134, 0.05); overflow: visible; }
+        .kpi .mi { color: #1d6fb8; font-size: 20px; display: block; line-height: 1; }
+        .kpi b { display: block; margin: 6px 0 0; font-size: 28px; color: #0b4f86; line-height: 1.1; }
+        .kpi small { display: block; margin-top: 4px; color: #3e627f; font-size: 13px; line-height: 1.3; }
         [data-testid="stMetric"] {
-          background: white; border: 1px solid #d5e8f6; border-radius: 20px;
-          padding: 24px 24px 28px !important; min-height: 140px; height: auto !important; overflow: visible !important;
+          background: white; border: 1px solid #d5e8f6; border-radius: 16px;
+          padding: 12px 16px 14px !important; min-height: 96px; height: auto !important; overflow: visible !important;
         }
         [data-testid="stMetricLabel"], [data-testid="stMetricValue"] { overflow: visible !important; }
-        [data-testid="stMetricLabel"] p { font-size: 16px !important; }
-        [data-testid="stMetricValue"] { line-height: 1.2; padding-bottom: 4px; font-size: 36px !important; }
+        [data-testid="stMetricLabel"] p { font-size: 13px !important; margin-top: 2px !important; }
+        [data-testid="stMetricValue"] { line-height: 1.1; padding-bottom: 0; font-size: 28px !important; }
         [data-testid="stMain"] [data-testid="stElementContainer"]:has([data-testid="stMetric"]),
         [data-testid="stMain"] [data-testid="stElementContainer"]:has([data-testid="stMetric"]) > div {
           height: auto !important; overflow: visible !important;
@@ -186,17 +191,17 @@ def apply_theme():
         .guide-mark { display: none; }
         [data-testid="stVerticalBlockBorderWrapper"]:has(.guide-mark) { border-left: 4px solid #2b8fd6 !important; }
         [data-testid="stVerticalBlock"]:has(.guide-mark):not(:has([data-testid="stVerticalBlock"])) {
-          border-top-left-radius: 26px !important;
-          border-top-right-radius: 26px !important;
-          padding: 32px 26px 28px !important;
+          border-top-left-radius: 18px !important;
+          border-top-right-radius: 18px !important;
+          padding: 14px 16px 12px !important;
         }
         [data-testid="stVerticalBlock"]:has(.guide-mark):not(:has([data-testid="stVerticalBlock"])) [data-testid="stMarkdownContainer"] p {
-          font-size: 18px !important;
-          line-height: 1.55;
+          font-size: 14px !important;
+          line-height: 1.4;
         }
         [data-testid="stMain"] [data-testid="stMarkdownContainer"] p,
-        [data-testid="stMain"] [data-testid="stCaptionContainer"] p { font-size: 15px; line-height: 1.45; }
-        [data-testid="stMain"] h3 { font-size: 20px; margin-top: 0.4rem; }
+        [data-testid="stMain"] [data-testid="stCaptionContainer"] p { font-size: 14px; line-height: 1.4; }
+        [data-testid="stMain"] h3 { font-size: 18px; margin-top: 0.15rem; }
         [data-testid="stSidebar"] { position: relative; }
         [data-testid="stSidebarUserContent"],
         [data-testid="stSidebarUserContent"] > div,
@@ -208,11 +213,11 @@ def apply_theme():
         [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.brand-block) > div,
         [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.brand-block) [data-testid="stMarkdown"],
         [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.brand-block) [data-testid="stMarkdown"] > div {
-          height: auto !important; min-height: 72px !important; overflow: visible !important;
+          height: auto !important; min-height: 44px !important; overflow: visible !important;
         }
         [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.brand-block) { order: 1; flex: 0 0 auto; }
         [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.theme-label) { order: 2; flex: 0 0 auto; }
-        [data-testid="stSidebar"] [data-testid="stLayoutWrapper"] { order: 3; flex: 0 0 auto; margin: 14px 0 6px; }
+        [data-testid="stSidebar"] [data-testid="stLayoutWrapper"] { order: 3; flex: 0 0 auto; margin: 6px 0 2px; }
         [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.author-block),
         [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.author-block) > div,
         [data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.author-block) [data-testid="stMarkdown"],
@@ -223,10 +228,10 @@ def apply_theme():
           order: 5; flex: 0 0 auto; margin-top: 0; padding: 12px 2px 8px;
           border-top: 1px solid rgba(214, 232, 248, 0.28);
         }
-        .brand-block { display: flex; gap: 10px; align-items: center; min-height: 64px; padding: 8px 2px 4px; }
+        .brand-block { display: flex; gap: 8px; align-items: center; min-height: 44px; padding: 0 2px 2px; }
         .logo-n, .avatar { display: grid; place-items: center; color: white; font-weight: 700; flex: 0 0 auto; }
-        .logo-n { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(145deg, #7ec8f8, #1d6fb8); font-size: 20px; }
-        [data-testid="stSidebar"] .brand-title { margin: 0; font-size: 18px !important; font-weight: 700; line-height: 1.15; color: white; }
+        .logo-n { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(145deg, #7ec8f8, #1d6fb8); font-size: 16px; }
+        [data-testid="stSidebar"] .brand-title { margin: 0; font-size: 15px !important; font-weight: 700; line-height: 1.15; color: white; }
         [data-testid="stSidebar"] .brand-sub, [data-testid="stSidebar"] .author-note { margin: 2px 0 0; color: #d5e9f8 !important; font-size: 13px !important; }
         [data-testid="stSidebar"] .side-label { margin: 10px 0 0; color: #9ec8e8 !important; font-size: 11px !important; letter-spacing: 0.14em; font-weight: 700; }
         [data-testid="stSidebar"] .stButton button {

@@ -53,7 +53,7 @@ def kpis(items):
     cards = []
     for icon, value, label in items:
         cards.append(
-            f'<article class="kpi" style="box-sizing:border-box;padding:28px 20px 24px;min-height:168px;">'
+            f'<article class="kpi" style="box-sizing:border-box;padding:26px 22px 22px 44px;min-height:168px;">'
             f'<span class="mi">{icon}</span><b>{value}</b><small>{label}</small></article>'
         )
     st.markdown(f'<div class="kpi-grid">{"".join(cards)}</div>', unsafe_allow_html=True)
@@ -82,15 +82,6 @@ def guide(items):
 
 def section(icon, title):
     st.markdown(f"### :material/{icon}: {title}")
-
-
-def offer_csv(frame, name):
-    st.download_button(
-        f"Download {name}",
-        frame.to_csv(index=False).encode("utf-8"),
-        file_name=name,
-        mime="text/csv",
-    )
 
 
 def apply_theme():
@@ -168,9 +159,9 @@ def apply_theme():
         .hero p { margin: 0; max-width: 820px; font-size: 15px; line-height: 1.45; color: rgba(255,255,255,0.94); }
         .hero-icon { font-size: 20px; vertical-align: -3px; margin-right: 8px; }
         .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 8px 0 14px; }
-        .kpi { background: white; border: 1px solid #d5e8f6; border-radius: 16px; padding: 28px 20px 24px !important; min-height: 168px !important; height: auto !important; box-sizing: border-box !important; box-shadow: 0 8px 20px rgba(12, 79, 134, 0.05); overflow: visible; }
-        .kpi .mi { color: #1d6fb8; font-size: 20px; display: block; line-height: 1; }
-        .kpi b { display: block; margin: 6px 0 0; font-size: 28px; color: #0b4f86; line-height: 1.1; }
+        .kpi { background: white; border: 1px solid #d5e8f6; border-radius: 16px; padding: 26px 22px 22px 44px !important; min-height: 168px !important; height: auto !important; box-sizing: border-box !important; box-shadow: 0 8px 20px rgba(12, 79, 134, 0.05); overflow: visible; }
+        .kpi .mi { color: #1d6fb8; font-size: 20px; display: block; line-height: 1; margin-bottom: 11px; }
+        .kpi b { display: block; margin: 0; font-size: 28px; color: #0b4f86; line-height: 1.1; }
         .kpi small { display: block; margin-top: 4px; color: #3e627f; font-size: 13px; line-height: 1.3; }
         [data-testid="stMetric"] {
           background: white; border: 1px solid #d5e8f6; border-radius: 16px;
@@ -183,8 +174,8 @@ def apply_theme():
         [data-testid="stMain"] [data-testid="stElementContainer"]:has([data-testid="stMetric"]) > div {
           height: auto !important; overflow: visible !important;
         }
-        [data-testid="stVerticalBlockBorderWrapper"] {
-          background: white; border: 1px solid #d5e8f6; border-radius: 20px; padding: 20px 22px 22px;
+        [data-testid="stVerticalBlockBorderWrapper"]:not(:has(.guide-mark)) {
+          background: white; border: 1px solid #d5e8f6; border-radius: 20px; padding: 26px 24px 22px 44px !important;
         }
         div[data-testid="stAlert"], div[data-testid="stNotification"] {
           background: #e7f4fc !important; color: #0e3d66 !important; border: 0 !important; border-left: 4px solid #2b8fd6 !important;
@@ -456,7 +447,6 @@ def exploration():
     post_word = "post" if len(show) == 1 else "posts"
     st.caption(f"{len(show)} {post_word} · {int(show['n_comments'].sum()) if len(show) else 0:,} comments in this filter")
     st.dataframe(show, width="stretch", hide_index=True)
-    offer_csv(show, "filtered_posts.csv")
     if len(show):
         st.plotly_chart(
             bar_chart(show["post_id"].tolist(), show["n_comments"].tolist(), "Comments in the filtered posts", horizontal=True),
@@ -519,7 +509,6 @@ def topics():
     figure.update_layout(title=dict(text="Coherence in the filtered comparison", font=dict(size=16)), xaxis_title="c_npmi")
     st.plotly_chart(layout(figure, 360), width="stretch")
     st.dataframe(shown, width="stretch", hide_index=True)
-    offer_csv(shown, "topic_model_comparison.csv")
     section("abc", "Cited topic terms and sizes")
     terms = bundle["topic_terms"].sort_values("n_comments", ascending=False)
     columns = st.columns(3)

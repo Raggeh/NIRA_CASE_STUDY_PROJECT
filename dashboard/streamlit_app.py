@@ -150,7 +150,7 @@ def apply_theme():
           background: rgba(6, 32, 58, 0.28);
         }
         [data-testid="stSidebarNav"] a[aria-current="page"] { background: #1d6fb8; border-color: #7ec8f8; }
-        [data-testid="stSidebarNav"] a, [data-testid="stSidebarNav"] a span { font-size: 14px !important; }
+        [data-testid="stSidebarNav"] a, [data-testid="stSidebarNav"] a span { font-size: 15px !important; }
         [data-testid="stSidebarNav"] a [data-testid="stIconMaterial"] { font-size: 18px !important; }
         .hero {
           background: linear-gradient(120deg, #0b4f86 0%, #1d7ed6 58%, #7ec8f8 130%);
@@ -167,7 +167,7 @@ def apply_theme():
         .hero p { margin: 0; max-width: 820px; font-size: 15px; line-height: 1.45; color: rgba(255,255,255,0.94); }
         .hero-icon { font-size: 20px; vertical-align: -3px; margin-right: 8px; }
         .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 8px 0 14px; }
-        .kpi { background: white; border: 1px solid #d5e8f6; border-radius: 16px; padding: 12px 16px 14px; min-height: 108px; box-shadow: 0 8px 20px rgba(12, 79, 134, 0.05); overflow: visible; }
+        .kpi { background: white; border: 1px solid #d5e8f6; border-radius: 16px; padding: 22px 18px 16px; min-height: 136px; box-shadow: 0 8px 20px rgba(12, 79, 134, 0.05); overflow: visible; }
         .kpi .mi { color: #1d6fb8; font-size: 20px; display: block; line-height: 1; }
         .kpi b { display: block; margin: 6px 0 0; font-size: 28px; color: #0b4f86; line-height: 1.1; }
         .kpi small { display: block; margin-top: 4px; color: #3e627f; font-size: 13px; line-height: 1.3; }
@@ -231,11 +231,11 @@ def apply_theme():
         .brand-block { display: flex; gap: 8px; align-items: center; min-height: 44px; padding: 0 2px 2px; }
         .logo-n, .avatar { display: grid; place-items: center; color: white; font-weight: 700; flex: 0 0 auto; }
         .logo-n { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(145deg, #7ec8f8, #1d6fb8); font-size: 16px; }
-        [data-testid="stSidebar"] .brand-title { margin: 0; font-size: 15px !important; font-weight: 700; line-height: 1.15; color: white; }
-        [data-testid="stSidebar"] .brand-sub, [data-testid="stSidebar"] .author-note { margin: 2px 0 0; color: #d5e9f8 !important; font-size: 13px !important; }
+        [data-testid="stSidebar"] .brand-title { margin: 0; font-size: 16px !important; font-weight: 700; line-height: 1.15; color: white; }
+        [data-testid="stSidebar"] .brand-sub, [data-testid="stSidebar"] .author-note { margin: 2px 0 0; color: #d5e9f8 !important; font-size: 12px !important; }
         [data-testid="stSidebar"] .side-label { margin: 10px 0 0; color: #9ec8e8 !important; font-size: 11px !important; letter-spacing: 0.14em; font-weight: 700; }
         [data-testid="stSidebar"] .stButton button {
-          border-radius: 999px; min-height: 40px; font-size: 14px; padding: 8px 14px !important;
+          border-radius: 999px; min-height: 40px; font-size: 15px; padding: 8px 14px !important;
         }
         [data-testid="stSidebar"] button [data-testid="stMarkdownContainer"],
         [data-testid="stSidebar"] button [data-testid="stMarkdownContainer"] p {

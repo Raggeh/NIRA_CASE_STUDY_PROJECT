@@ -8,16 +8,6 @@ from nira_data import GROUP_NAMES, TASK_NAMES, load, model_name
 
 st.set_page_config(page_title="NIRA Research Dashboard", page_icon="N", layout="wide")
 
-_plotly_chart = st.plotly_chart
-
-
-def _plotly_chart_unthemed(figure, *args, **kwargs):
-    kwargs["theme"] = None
-    return _plotly_chart(figure, *args, **kwargs)
-
-
-st.plotly_chart = _plotly_chart_unthemed
-
 PALETTE = ["#0b4f86", "#1d6fb8", "#3d97d4", "#7ec8f8", "#9fd4f5", "#d5ebf8"]
 
 
@@ -32,23 +22,16 @@ def ink():
 
 
 def layout(figure, height=320):
-    color = ink()
-    dark = st.session_state.get("theme") == "dark"
     figure.update_layout(
         height=height,
-        margin=dict(l=8, r=12, t=48, b=8),
-        font=dict(family="Poppins", size=13, color=color),
-        title=dict(font=dict(family="Poppins", size=16, color=color)),
+        margin=dict(l=8, r=12, t=40, b=8),
+        font=dict(family="Poppins", size=13, color=ink()),
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, x=0, font=dict(family="Poppins", size=13, color=color)),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, x=0),
     )
-    figure.update_xaxes(showgrid=False, tickfont=dict(color=color), title_font=dict(color=color))
-    figure.update_yaxes(
-        gridcolor="rgba(126,200,248,0.28)" if dark else "rgba(29,111,184,0.15)",
-        tickfont=dict(color=color),
-        title_font=dict(color=color),
-    )
+    figure.update_xaxes(showgrid=False, automargin=True)
+    figure.update_yaxes(gridcolor="rgba(29,111,184,0.15)", automargin=True)
     return figure
 
 

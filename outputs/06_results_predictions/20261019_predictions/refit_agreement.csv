@@ -1,0 +1,5 @@
+task,selected_model,heldout_test_macro_f1,refit_agreement_macro_f1,refit_agreement_accuracy,agreement_meaning
+policy_relevance,complement_nb,0.4913595227261236,0.8528482777581399,0.9049207673060884,"Calculated after refitting on all 1,199 labeled rows. This is not a held-out test score."
+feedback_type,logistic_regression,0.41991806476612403,0.8616148594124029,0.8607172643869891,"Calculated after refitting on all 1,199 labeled rows. This is not a held-out test score."
+topic,complement_nb,0.4102326859028919,0.9015018695442316,0.8849040867389492,"Calculated after refitting on all 1,199 labeled rows. This is not a held-out test score."
+sentiment,complement_nb,0.5001346647819677,0.8693599250114377,0.8899082568807339,"Calculated after refitting on all 1,199 labeled rows. This is not a held-out test score."

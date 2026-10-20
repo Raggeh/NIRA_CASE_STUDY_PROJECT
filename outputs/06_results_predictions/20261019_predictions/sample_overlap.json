@@ -1,0 +1,8 @@
+{
+  "annotated_sample": 10,
+  "unlabeled_sample": 10,
+  "additional_predicted_sample": 10,
+  "unique_record_keys": 30,
+  "overlap_between_samples": 0,
+  "note": "Every comment receives a prediction. The third sample is not a separate dataset. It is ten further comments drawn from the rows that were not already sampled. The unsupervised topic columns come from notebook 04 and use a different label space from the manual topic classes."
+}

@@ -1,0 +1,35 @@
+{
+  "event_id": "RESP_001",
+  "event_date": "2025-11-03",
+  "event_definition": "SONNA report that the NIRA Director General addressed night-queue concerns.",
+  "date_basis": "publication_date_register of the source post",
+  "collection_date_used": false,
+  "causal_claim": false,
+  "directly_linked_posts": 0,
+  "periods": [
+    {
+      "event_id": "RESP_001",
+      "event_date": "2025-11-03",
+      "event_period": "pre_event",
+      "n_posts": 9,
+      "n_comments": 3236,
+      "n_annotated": 734
+    },
+    {
+      "event_id": "RESP_001",
+      "event_date": "2025-11-03",
+      "event_period": "event_day",
+      "n_posts": 1,
+      "n_comments": 212,
+      "n_annotated": 48
+    },
+    {
+      "event_id": "RESP_001",
+      "event_date": "2025-11-03",
+      "event_period": "post_event",
+      "n_posts": 9,
+      "n_comments": 1844,
+      "n_annotated": 417
+    }
+  ]
+}

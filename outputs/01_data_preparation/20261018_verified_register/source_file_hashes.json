@@ -1,0 +1,17 @@
+{
+  "raw_corpus": {
+    "path": "NIRA_Facebook_Datasets_5292.csv",
+    "bytes": 824266,
+    "sha256": "6d20ef6fca59e2348c25e7d0ef644dd1192b2df683f7a25d9c8ce2ed151d3bff"
+  },
+  "annotation": {
+    "path": "Annotation Dataset\\NIRA_Annotation_Master_1199_Modeling_final.xlsx",
+    "bytes": 138746,
+    "sha256": "baa55080d7cd831eff4945d292728c7dd6ff0a6a7274f73d5f5e94bfe42cc5d4"
+  },
+  "publication_workbook": {
+    "path": "Publication Date Verification.xlsx",
+    "bytes": 12573,
+    "sha256": "27bde417b8a25270342a2b2be8736189846c95f670fd4b3440f5579d0f4553eb"
+  }
+}

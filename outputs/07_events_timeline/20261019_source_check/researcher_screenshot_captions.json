@@ -1,0 +1,25 @@
+{
+  "recorded_on": "2026-10-19",
+  "source": "Screenshots supplied by the researcher after the Facebook pages opened on their machine. An earlier automated fetch of the same URLs returned 403.",
+  "posts": [
+    {
+      "post_id": "POST_17",
+      "account_shown": "Telefishinka Qaranka Soomaaliyeed",
+      "format_shown": "Facebook Reel",
+      "caption_as_shown": "Safaaradda Soomaaliya ee dalka Uganda oo bilowday inay bixiso Kaarka Aqoonsiga Qaranka ee NIRA.",
+      "screenshot": "evidence/post_screenshots/POST_17_researcher_screenshot_20261019.png",
+      "working_description": "The visible caption says the Somali Embassy in Uganda has begun issuing the NIRA national ID card.",
+      "remaining_limitation": "The screenshot shows the caption and a still frame. It does not recover the spoken audio of the reel."
+    },
+    {
+      "post_id": "POST_18",
+      "account_shown": "NIRA Somalia",
+      "date_shown": "March 19",
+      "caption_as_shown": "Ciid Mubarak! Hay'adda NIRA waxa ay shacabka Soomaaliyeed iyo guud ahaan ummadda Islaamka ugu hambalyaynaysaa Munaasabadda Barakaysan ee Ciidul-Fidriga.",
+      "graphic_text_as_shown": "عيد مبارك / CIID MUBAARAK",
+      "screenshot": "evidence/post_screenshots/POST_18_researcher_screenshot_20261019.png",
+      "working_description": "The visible caption is an Eid al-Fitr greeting from NIRA to the Somali public and the wider Muslim community. The graphic also reads CIID MUBAARAK.",
+      "remaining_limitation": "The screenshot date reads March 19 and matches the register date 2026-03-19. The year is not printed as a four-digit year in the visible header."
+    }
+  ]
+}

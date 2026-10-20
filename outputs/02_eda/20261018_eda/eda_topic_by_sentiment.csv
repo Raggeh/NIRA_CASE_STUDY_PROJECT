@@ -1,0 +1,10 @@
+﻿topic,negative,neutral,positive,uncertain,All
+corruption_unofficial_payment,199,28,0,0,227
+delay_processing,85,11,1,0,97
+documentation_requirements,3,14,0,0,17
+government_policy,33,33,26,0,92
+identity_card,29,76,41,2,148
+other,80,106,123,81,390
+registration,2,21,6,0,29
+service_access,79,109,11,0,199
+All,510,398,208,83,1199

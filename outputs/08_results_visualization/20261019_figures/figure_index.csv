@@ -1,0 +1,7 @@
+file,reads_as
+topic_coherence.png,"c_npmi for every topic-model candidate on 5,292 comments"
+selected_topic_sizes.png,Comment counts for the selected topic model
+validation_macro_f1.png,Validation macro-F1 for five models on four tasks
+heldout_and_refit_macro_f1.png,Held-out test macro-F1 beside refit agreement
+label_share_comparison.png,"Manual and predicted label shares, with denominators in the title"
+post_timeline_volume.png,"Comment counts by post. Color is the linkage class, not a causal result"

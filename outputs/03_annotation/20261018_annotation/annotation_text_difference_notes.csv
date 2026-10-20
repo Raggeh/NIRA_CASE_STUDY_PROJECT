@@ -1,0 +1,6 @@
+﻿text_difference_note,n_comments
+difference is limited to line breaks or spacing,12
+one version contains the other plus extra characters,6
+small character-level difference,4
+annotation contains the literal Excel marker _x000D_,2
+annotation redacts material that is present in the raw comment,1

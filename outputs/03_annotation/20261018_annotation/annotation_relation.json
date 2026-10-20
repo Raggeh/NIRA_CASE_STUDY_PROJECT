@@ -1,0 +1,14 @@
+{
+  "annotated_comments": 1199,
+  "raw_comments": 5292,
+  "annotated_share_of_raw": 0.2265684051398337,
+  "unmatched_annotation_keys": 0,
+  "exact_text_matches": 1174,
+  "newline_or_whitespace_differences": 12,
+  "content_differences": 13,
+  "annotated_share_by_post_min": 0.21875,
+  "annotated_share_by_post_max": 0.2328767123287671,
+  "codebook_file_present": false,
+  "inter_annotator_agreement_available": false,
+  "decision": "All 1,199 annotation keys match a raw comment. Twenty-five text differences are retained in the mismatch register and were not overwritten. One of those differences is a phone number redacted in the annotation file. The annotated share of each post is about 22 to 23 percent. No sampling protocol is stored in the project files."
+}

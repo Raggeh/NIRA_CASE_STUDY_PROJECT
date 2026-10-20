@@ -1,0 +1,14 @@
+{
+  "n_posts": 19,
+  "n_comments": 5292,
+  "directly_linked_posts": 0,
+  "thematically_related_posts": 4,
+  "temporally_associated_posts": 1,
+  "unlinked_posts": 14,
+  "named_comparisons": {
+    "POST_01": "RESP_001, thematically related; causality not established in the register",
+    "POST_04": "RESP_001 and RESP_002, thematically related; no direct response established",
+    "POST_09": "RESP_001, same registered date 2025-11-03; temporal association is not causality"
+  },
+  "decision": "No inventoried communication is classed as a direct response to a source post or to a comment. Shared topic and nearby dates remain comparisons."
+}

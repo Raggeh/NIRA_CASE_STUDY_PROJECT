@@ -1,0 +1,3 @@
+This run predates the Content Evidence Review sheet.
+
+The current register is outputs/01_data_preparation/20261018_content_review/. Publication dates and URLs are unchanged. POST_17 and POST_18 content fields were updated in that later run.

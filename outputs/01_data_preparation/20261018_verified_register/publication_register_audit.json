@@ -1,0 +1,106 @@
+{
+  "sheets": [
+    "Post Register",
+    "Response Register",
+    "Read Me and Limitations"
+  ],
+  "post_register_rows": 19,
+  "post_register_columns": [
+    "post_id",
+    "account_name",
+    "publication_date",
+    "summary",
+    "policy_topic",
+    "public_feedback_issue",
+    "government_response",
+    "evidence_status",
+    "linkage_note",
+    "post_url",
+    "publication_date_status",
+    "post_url_status",
+    "content_evidence_status",
+    "verification_basis"
+  ],
+  "response_register_rows": 5,
+  "response_register_columns": [
+    "response_id",
+    "source",
+    "date",
+    "title",
+    "topic",
+    "url",
+    "evidence_status"
+  ],
+  "post_register_contains_url_column": true,
+  "urls_matched_to_raw_corpus": 19,
+  "urls_in_register_only": 0,
+  "urls_in_corpus_only": 0,
+  "comments_covered_by_matched_urls": 5292,
+  "readme_notes": [
+    {
+      "item": "Purpose",
+      "note": "Consolidated evidence register for 19 NIRA-related source posts and five government/official response records."
+    },
+    {
+      "item": "URL and date confirmation",
+      "note": "All 19 post URLs were matched against the Account Verification worksheet. Publication dates are recorded as researcher-verified in the Publication Date Verification worksheet; POST_08, POST_10, and POST_17 were explicitly confirmed by the researcher on 2026-10-18."
+    },
+    {
+      "item": "POST_08 date",
+      "note": "Publication date confirmed as 2026-07-06, matching the date shown in the image."
+    },
+    {
+      "item": "POST_10 date",
+      "note": "Publication date confirmed as 2025-10-18. The post’s reported policy claim remains distinct from confirmation of the policy itself."
+    },
+    {
+      "item": "POST_17 and POST_18 content notes",
+      "note": "POST_17 publication date/account/URL are confirmed, but conflicting content descriptions remain recorded. POST_18 account/URL/date are recorded, while the original post content was not recovered in the available materials."
+    },
+    {
+      "item": "Causality and response linkage",
+      "note": "Confirming a source URL or publication date does not by itself establish a direct government response or causation. Direct linkage requires specific documentary evidence; temporal and thematic relationships must be described separately."
+    }
+  ],
+  "publication_date_status_counts": {
+    "CONFIRMED — recorded as researcher-verified in Publication Date Verification worksheet": 16,
+    "CONFIRMED — researcher-confirmed on 2026-10-18 (2026-07-06)": 1,
+    "CONFIRMED — researcher-confirmed on 2026-10-18 (2025-10-18)": 1,
+    "CONFIRMED — researcher-confirmed on 2026-10-18 (2025-12-26)": 1
+  },
+  "post_url_status_counts": {
+    "CONFIRMED — exact URL matched to Account Verification worksheet": 19
+  },
+  "changes_since_20261018_post_url": [
+    {
+      "post_id": "POST_17",
+      "field": "account_name",
+      "previous": "Telefishinka Qaranka Soomaaliyeed (workbook metadata; may be mismatched)",
+      "current": "Telefishinka Qaranka Soomaaliyeed"
+    },
+    {
+      "post_id": "POST_18",
+      "field": "account_name",
+      "previous": "NIRA Somalia (reported metadata; content not provided in available notes)",
+      "current": "NIRA Somalia"
+    },
+    {
+      "post_id": "POST_08",
+      "field": "publication_date",
+      "previous": "2026-07-07",
+      "current": "2026-07-06"
+    }
+  ],
+  "content_limitations": [
+    {
+      "post_id": "POST_17",
+      "content_evidence_status": "Publication date is confirmed as 2025-12-26 and account/URL match the verification worksheet; conflicting content descriptions remain documented."
+    },
+    {
+      "post_id": "POST_18",
+      "content_evidence_status": "Account, URL, and publication date are recorded from the verification worksheets; original post content was not recovered in the available materials."
+    }
+  ],
+  "join_to_comment_corpus": "The Post Register column post_url matches all 19 stripped URLs in the raw corpus. Every comment can be attached to exactly one post_id.",
+  "authority": "The workbook records all 19 publication dates and post URLs as researcher-verified. POST_08, POST_10, and POST_17 are marked as explicitly confirmed on 2026-10-18. POST_08 is dated 2026-07-06. A confirmed URL or date does not establish a direct government response. POST_17 still has conflicting content descriptions. POST_18 still has no recovered post content."
+}

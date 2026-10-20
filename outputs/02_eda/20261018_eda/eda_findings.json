@@ -1,0 +1,64 @@
+{
+  "run_id": "20261018_eda",
+  "input_run": "20261018_content_review",
+  "raw_comments": 5292,
+  "annotated_comments": 1199,
+  "source_posts": 19,
+  "largest_post_id": "POST_01",
+  "largest_post_comments": 1013,
+  "annotated_share_of_raw": 0.2265684051398337,
+  "annotated_share_by_post_min": 0.21875,
+  "annotated_share_by_post_max": 0.2328767123287671,
+  "collection_days": [
+    {
+      "collection_day": "2026-07-23",
+      "n_comments": 505
+    },
+    {
+      "collection_day": "2026-07-24",
+      "n_comments": 2720
+    },
+    {
+      "collection_day": "2026-08-08",
+      "n_comments": 2067
+    }
+  ],
+  "publication_year_comment_counts": [
+    {
+      "publication_year": 2023,
+      "n_comments": 1072
+    },
+    {
+      "publication_year": 2024,
+      "n_comments": 52
+    },
+    {
+      "publication_year": 2025,
+      "n_comments": 3169
+    },
+    {
+      "publication_year": 2026,
+      "n_comments": 999
+    }
+  ],
+  "raw_median_chars": 55.0,
+  "raw_under_30": 1024,
+  "dominant_labels": {
+    "policy_relevance": {
+      "label": "relevant",
+      "n_comments": 821
+    },
+    "feedback_type": {
+      "label": "complaint",
+      "n_comments": 317
+    },
+    "topic": {
+      "label": "other",
+      "n_comments": 390
+    },
+    "sentiment": {
+      "label": "negative",
+      "n_comments": 510
+    }
+  }
+}

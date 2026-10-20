@@ -1,0 +1,205 @@
+{
+  "sheets": [
+    "Post Register",
+    "Response Register",
+    "Read Me and Limitations",
+    "Content Evidence Review"
+  ],
+  "post_register_rows": 19,
+  "post_register_columns": [
+    "post_id",
+    "account_name",
+    "publication_date",
+    "summary",
+    "policy_topic",
+    "public_feedback_issue",
+    "government_response",
+    "evidence_status",
+    "linkage_note",
+    "post_url",
+    "publication_date_status",
+    "post_url_status",
+    "content_evidence_status",
+    "verification_basis"
+  ],
+  "response_register_rows": 5,
+  "response_register_columns": [
+    "response_id",
+    "source",
+    "date",
+    "title",
+    "topic",
+    "url",
+    "evidence_status"
+  ],
+  "post_register_contains_url_column": true,
+  "urls_matched_to_raw_corpus": 19,
+  "urls_in_register_only": 0,
+  "urls_in_corpus_only": 0,
+  "comments_covered_by_matched_urls": 5292,
+  "readme_notes": [
+    {
+      "item": "Purpose",
+      "note": "Consolidated evidence register for 19 NIRA-related source posts and five government/official response records."
+    },
+    {
+      "item": "URL and date confirmation",
+      "note": "All 19 post URLs were matched against the Account Verification worksheet. Publication dates are recorded as researcher-verified in the Publication Date Verification worksheet; POST_08, POST_10, and POST_17 were explicitly confirmed by the researcher on 2026-10-18."
+    },
+    {
+      "item": "POST_08 date",
+      "note": "Publication date confirmed as 2026-07-06, matching the date shown in the image."
+    },
+    {
+      "item": "POST_10 date",
+      "note": "Publication date confirmed as 2025-10-18. The post’s reported policy claim remains distinct from confirmation of the policy itself."
+    },
+    {
+      "item": "POST_17 and POST_18 content resolution",
+      "note": "POST_17 is likely about NIRA national-ID issuance through the Somali Embassy in Uganda, corroborated by a matching SNTV report published 2025-12-25 and comments on the registered URL; the exact Facebook media item was not directly retrieved. POST_18 is likely an Eid al-Fitr seasonal greeting, inferred from comments mentioning Eid/card collection and its 2026-03-19 date immediately before Eid on 2026-03-20; the original image/caption remains unavailable. These are carefully qualified working descriptions, not verbatim confirmations. See the Content Evidence Review sheet for source links and analysis guidance."
+    },
+    {
+      "item": "Causality and response linkage",
+      "note": "Confirming a source URL or publication date does not by itself establish a direct government response or causation. Direct linkage requires specific documentary evidence; temporal and thematic relationships must be described separately."
+    },
+    {
+      "item": "POST_17 content resolution",
+      "note": "Likely NIRA national-ID service through the Somali Embassy in Uganda. Corroborated by an SNTV report published 2025-12-25 and comments on the matched Facebook URL. The exact Facebook caption/video was not directly recovered; use as topic-level corroboration, not verbatim confirmation."
+    },
+    {
+      "item": "POST_18 content resolution",
+      "note": "Likely Eid al-Fitr greeting/seasonal message, based on multiple comments mentioning Eid and requests about card collection, plus the 2026-03-19 publication date immediately before Eid al-Fitr on 2026-03-20. Original image/caption remains unrecovered; label the description as inferred, not confirmed."
+    },
+    {
+      "item": "Use in EDA and Events Timeline",
+      "note": "EDA may analyse the 5,292 comments and comment text associated with these URLs. For POST_17, use a cautiously qualified embassy-service topic. For POST_18, treat Eid/seasonal content as an inferred working label and analyse card-collection concerns from the comments. Do not attribute an official response or causal relationship without direct evidence."
+    }
+  ],
+  "publication_date_status_counts": {
+    "CONFIRMED — recorded as researcher-verified in Publication Date Verification worksheet": 16,
+    "CONFIRMED — researcher-confirmed on 2026-10-18 (2026-07-06)": 1,
+    "CONFIRMED — researcher-confirmed on 2026-10-18 (2025-10-18)": 1,
+    "CONFIRMED — researcher-confirmed on 2026-10-18 (2025-12-26)": 1
+  },
+  "post_url_status_counts": {
+    "CONFIRMED — exact URL matched to Account Verification worksheet": 19
+  },
+  "changes_since_20261018_verified_register": [
+    {
+      "post_id": "POST_17",
+      "field": "policy_topic",
+      "previous": "Unresolved; possible policy awareness, Eid greeting, or embassy service",
+      "current": "NIRA service access abroad; national ID issuance through the Somali Embassy in Uganda; diaspora access"
+    },
+    {
+      "post_id": "POST_18",
+      "field": "policy_topic",
+      "previous": "Unknown",
+      "current": "Likely Eid/seasonal communication; national ID card collection; service access"
+    },
+    {
+      "post_id": "POST_17",
+      "field": "evidence_status",
+      "previous": "CONFIRMED — post URL and publication date checked; Publication date is confirmed as 2025-12-26 and account/URL match the verification worksheet; conflicting content descriptions remain documented.",
+      "current": "CONTENT TOPIC CORROBORATED — matching public SNTV report and comments support the embassy-service topic; the Facebook post itself was not directly retrieved."
+    },
+    {
+      "post_id": "POST_18",
+      "field": "evidence_status",
+      "previous": "CONFIRMED — post URL and publication date checked; Account, URL, and publication date are recorded from the verification worksheets; original post content was not recovered in the available materials.",
+      "current": "CONTENT TYPE INFERRED FROM COMMENT EVIDENCE — original Facebook image/caption remains unavailable."
+    },
+    {
+      "post_id": "POST_17",
+      "field": "linkage_note",
+      "previous": "Publication date and source URL are confirmed; conflicting content descriptions limit interpretation of any relationship to RESP_005.",
+      "current": "SNTV published a report titled 'Safaaradda Soomaaliya ee dalka Uganda oo bilowday inay bixiso Kaarka Aqoonsiga Qaranka ee NIRA' on 2025-12-25. The source post's registered date is 2025-12-26 and its comments include references to the Uganda embassy/NIRA card. Treat this as strong topic-level corroboration, not proof that the Facebook item is the identical video or caption."
+    },
+    {
+      "post_id": "POST_18",
+      "field": "linkage_note",
+      "previous": "Original post content was not recovered from the available materials; no content interpretation or response relationship is inferred from date/account alone.",
+      "current": "The post is dated 2026-03-19, the day before Eid al-Fitr in Somalia (2026-03-20). Multiple comments associated with the exact URL refer to Eid and card collection. The evidence supports a likely Eid-related message but does not recover the original post wording or image content."
+    },
+    {
+      "post_id": "POST_17",
+      "field": "content_evidence_status",
+      "previous": "Publication date is confirmed as 2025-12-26 and account/URL match the verification worksheet; conflicting content descriptions remain documented.",
+      "current": "LIKELY IDENTIFIED — public SNTV report provides strong corroboration; exact Facebook content not directly recovered."
+    },
+    {
+      "post_id": "POST_18",
+      "field": "content_evidence_status",
+      "previous": "Account, URL, and publication date are recorded from the verification worksheets; original post content was not recovered in the available materials.",
+      "current": "PROBABLE — comments and the publication-date context support an Eid-related message; original post text/image caption not recovered."
+    },
+    {
+      "post_id": "POST_17",
+      "field": "verification_basis",
+      "previous": "Account Verification worksheet + Publication Date Verification worksheet; researcher confirmation applied to POST_08, POST_10, POST_17",
+      "current": "Post URL and publication date are researcher-verified. Public corroborating source: https://www.youtube.com/watch?v=lx5oyqEf98U. Comment evidence linked to the exact Facebook URL is present in project annotation files."
+    },
+    {
+      "post_id": "POST_18",
+      "field": "verification_basis",
+      "previous": "Account Verification worksheet + Publication Date Verification worksheet; researcher confirmation applied to POST_08, POST_10, POST_17",
+      "current": "Internal comment evidence: NIRA_Manual_Annotation_Dataset_Annotated_REVISED.csv and NIRA_AI_PreAnnotated_Sample_300.csv, matched to the exact Facebook URL. Public context: https://moi.gov.so/news-detail.php?slug=federal-government-of-somalias-weekly-briefing-mogadishu-friday-20th-march-2026-eid-mubarak ; https://untmis.unmissions.org/en/news/un-extends-warmest-wishes-all-somalis-eid-al-fitr."
+    }
+  ],
+  "content_evidence_review": [
+    {
+      "post_id": "POST_17",
+      "publication_date": "2025-12-26",
+      "account_name": "Telefishinka Qaranka Soomaaliyeed",
+      "post_url": "https://www.facebook.com/share/v/1DGzDhdKuS/",
+      "resolution_status": "LIKELY IDENTIFIED — topic-level corroboration",
+      "working_content_description": "Likely report/repost about the Somali Embassy in Uganda beginning to issue NIRA national ID cards.",
+      "evidence_summary": "SNTV published a report with this exact topic on 2025-12-25. Comments associated with the registered Facebook URL refer to the Uganda embassy and NIRA cards, which aligns with the report. Other notes such as 'Eid greeting' appear inconsistent with this date/topic and are not retained as the working description.",
+      "evidence_type": "Public SNTV report + comments linked to the source-post URL",
+      "source_url_1": "https://www.youtube.com/watch?v=lx5oyqEf98U",
+      "source_url_2": "",
+      "confidence": "High for the likely topic; not confirmed as the identical Facebook media item",
+      "guidance_for_analysis": "May be used as a qualified topic-level event/source-post description. Do not quote a Facebook caption or assert exact video identity unless the original Facebook content is inspected.",
+      "remaining_limitation": "Facebook URL and publication date are researcher-verified, but the original Facebook caption/video was not directly retrievable in this review."
+    },
+    {
+      "post_id": "POST_18",
+      "publication_date": "2026-03-19",
+      "account_name": "NIRA Somalia",
+      "post_url": "https://www.facebook.com/photo/?fbid=933559576313414&set=a.171201679215878",
+      "resolution_status": "PROBABLE — inferred from comments and date context",
+      "working_content_description": "Likely Eid al-Fitr greeting/seasonal message; associated comments include requests and complaints about locating or receiving NIRA cards before Eid.",
+      "evidence_summary": "Comments matched to this exact URL include 'Ciidiina marabnee kaararka meel ku sheega' and 'Card ka nasiiya ciidina cune'. Official Somali government communications identify 2026-03-20 as Eid al-Fitr, the day after this post's registered publication date.",
+      "evidence_type": "Project annotation comments + official date context",
+      "source_url_1": "https://moi.gov.so/news-detail.php?slug=federal-government-of-somalias-weekly-briefing-mogadishu-friday-20th-march-2026-eid-mubarak",
+      "source_url_2": "https://untmis.unmissions.org/en/news/un-extends-warmest-wishes-all-somalis-eid-al-fitr",
+      "confidence": "Moderate for an Eid-related working description; original content not confirmed",
+      "guidance_for_analysis": "Use the inferred seasonal description only with its qualifier. Analyse comment-level card-collection concerns as observed text, not as a verified statement from the original post.",
+      "remaining_limitation": "The original Facebook photo/caption was not recovered; the exact post text cannot be quoted or certified from comments alone."
+    }
+  ],
+  "comment_corroboration_in_raw_corpus": {
+    "POST_17": {
+      "n_comments": 73,
+      "phrase_hits": {
+        "uganda": 3,
+        "safaarad": 2,
+        "embassy": 1
+      }
+    },
+    "POST_18": {
+      "n_comments": 64,
+      "phrase_hits": {
+        "Ciidiina marabnee kaararka meel ku sheega": 1,
+        "Card ka nasiiya ciidina cune": 1,
+        "ciid": 17
+      }
+    }
+  },
+  "cited_evidence_files_not_in_project": [
+    "NIRA_Manual_Annotation_Dataset_Annotated_REVISED.csv",
+    "NIRA_AI_PreAnnotated_Sample_300.csv"
+  ],
+  "join_to_comment_corpus": "The Post Register column post_url matches all 19 stripped URLs in the raw corpus. Every comment can be attached to exactly one post_id.",
+  "authority": "The workbook records all 19 publication dates and post URLs as researcher-verified. POST_08 is dated 2026-07-06. POST_17 is recorded as likely identified at topic level: NIRA national-ID issuance through the Somali Embassy in Uganda, with an SNTV report dated 2025-12-25 and comments on the matched URL. The original Facebook media item was not directly retrieved. POST_18 is recorded as a probable Eid al-Fitr greeting inferred from comments and the 2026-03-19 date, the day before Eid on 2026-03-20. The original image and caption were not recovered. A confirmed URL or date does not establish a direct government response."
+}

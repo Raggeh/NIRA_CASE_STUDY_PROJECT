@@ -1,0 +1,51 @@
+{
+  "raw_rows": 5292,
+  "columns": [
+    "comment_id",
+    "comment",
+    "platform",
+    "post_url",
+    "collection_date"
+  ],
+  "blank_comments": 0,
+  "empty_cells_by_column": {
+    "comment_id": 0,
+    "comment": 0,
+    "platform": 0,
+    "post_url": 0,
+    "collection_date": 0
+  },
+  "platform_values": {
+    "Facebook": 5292
+  },
+  "full_row_duplicates": 0,
+  "unique_comment_id": 1013,
+  "duplicate_comment_id_rows": 4279,
+  "within_post_duplicate_comment_id": 0,
+  "within_post_duplicate_comment_text": 0,
+  "rows_sharing_comment_text_with_another_post": 15,
+  "unique_comment_text": 5284,
+  "unique_posts_after_url_strip": 19,
+  "rows_with_outer_whitespace_in_post_url": 212,
+  "unique_collection_timestamps": 19,
+  "collection_date_min": "2026-07-23 07:50:00",
+  "collection_date_max": "2026-08-08 23:21:00",
+  "comment_char_len": {
+    "min": 15,
+    "p25": 33.0,
+    "median": 55.0,
+    "p75": 95.0,
+    "max": 1430,
+    "mean": 79.31198034769463
+  },
+  "comments_under_30_characters": 1024,
+  "comments_over_280_characters": 142,
+  "comments_with_newline": 335,
+  "comments_with_arabic_script": 7,
+  "comments_with_styled_latin_letters": 5,
+  "comments_with_phone_like_pattern": 11,
+  "decision_comment_id": "comment_id is unique within each stripped post_url and restarts at 1 on every post. Global repetition is not sufficient evidence of a duplicate comment. No rows were removed.",
+  "decision_post_url_whitespace": "212 rows on one URL have a leading space. The original URL is retained. Joins use post_url_stripped.",
+  "decision_collection_date": "Each of the 19 posts has a single collection timestamp. These values describe data collection, not source-post publication.",
+  "decision_text_normalization": "comment_original keeps the file text. comment_whitespace_normalized collapses whitespace only. Case, Somali spelling, and tokens are unchanged at this stage."
+}

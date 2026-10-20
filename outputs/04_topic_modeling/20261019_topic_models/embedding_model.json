@@ -1,0 +1,7 @@
+{
+  "model_name": "paraphrase-multilingual-MiniLM-L12-v2",
+  "n_comments": 5292,
+  "n_dimensions": 384,
+  "aligned_on": "source_row order of raw_corpus_working.csv",
+  "limitation": "The multilingual MiniLM embedding is not evidence that the model understands Somali."
+}

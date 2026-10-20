@@ -1,0 +1,125 @@
+{
+  "sheets": [
+    "Post Register",
+    "Response Register",
+    "Read Me and Limitations"
+  ],
+  "post_register_rows": 19,
+  "post_register_columns": [
+    "post_id",
+    "account_name",
+    "publication_date",
+    "summary",
+    "policy_topic",
+    "public_feedback_issue",
+    "government_response",
+    "evidence_status",
+    "linkage_note",
+    "post_url"
+  ],
+  "response_register_rows": 5,
+  "response_register_columns": [
+    "response_id",
+    "source",
+    "date",
+    "title",
+    "topic",
+    "url",
+    "evidence_status"
+  ],
+  "post_register_contains_url_column": true,
+  "post_urls_non_empty": 19,
+  "urls_matched_to_raw_corpus": 19,
+  "urls_in_register_only": 0,
+  "urls_in_corpus_only": 0,
+  "comments_covered_by_matched_urls": 5292,
+  "readme_notes": [
+    {
+      "item": "Purpose",
+      "note": "NB9 Feedback Loop Analysis: consolidate the user-described content of the 19 NIRA-related posts and five government/official response records as a working evidence register."
+    },
+    {
+      "item": "Important limitation",
+      "note": "Summaries reflect details the user described in prior conversation. They are not independent verification of the original posts. Original links/screenshots should be checked where available."
+    },
+    {
+      "item": "POST_17 caution",
+      "note": "Conflicting descriptions exist (workbook metadata says Telefishinka Qaranka Soomaaliyeed, 2025-12-26; other notes mention an Eid greeting and an embassy-in-Uganda NIRA service). Resolve against original post before analysis."
+    },
+    {
+      "item": "POST_18 caution",
+      "note": "Content was not recoverable from available notes. Use original metadata worksheet or post URL to fill it; do not infer the content."
+    },
+    {
+      "item": "Causality caution",
+      "note": "Temporal proximity and topical similarity do not establish that public comments caused an official response. Code linkage as strong/possible/unsupported only based on direct documentary evidence."
+    },
+    {
+      "item": "Data protection",
+      "note": "This workbook is a new consolidated file and does not overwrite existing project files."
+    }
+  ],
+  "evidence_status_counts": {
+    "User-described post": 4,
+    "User-described post; exact wording not fully preserved": 3,
+    "User-confirmed text; direct post link recorded": 2,
+    "User-described post; details should be checked against saved source/link": 1,
+    "User-described video/post; allegation is reported, not independently established here": 1,
+    "User-described image/caption; allegation not verified": 1,
+    "User-described post; deadline and policy status should be interpreted as the post's claim": 1,
+    "User-described image/post; publication date reported as 7 July while image date is 6 July": 1,
+    "User-described post; statement overlaps with POST_01 description": 1,
+    "User-transcribed claim; date inconsistency flagged": 1,
+    "User-described post; exact official implementation details not fully preserved": 1,
+    "CONFLICTING NOTES — requires checking original worksheet/post link": 1,
+    "CONTENT NOT YET RECOVERED": 1
+  },
+  "publication_dates": [
+    "2025-10-27",
+    "2023-09-16",
+    "2025-10-02",
+    "2025-11-04",
+    "2023-10-02",
+    "2026-07-14",
+    "2025-12-12",
+    "2026-07-07",
+    "2025-11-03",
+    "2025-10-18",
+    "2026-06-23",
+    "2025-09-26",
+    "2026-05-13",
+    "2025-09-18",
+    "2026-07-08",
+    "2023-09-16",
+    "2025-12-26",
+    "2026-03-19",
+    "2024-01-30"
+  ],
+  "post_ids": [
+    "POST_01",
+    "POST_02",
+    "POST_03",
+    "POST_04",
+    "POST_05",
+    "POST_06",
+    "POST_07",
+    "POST_08",
+    "POST_09",
+    "POST_10",
+    "POST_11",
+    "POST_12",
+    "POST_13",
+    "POST_14",
+    "POST_15",
+    "POST_16",
+    "POST_17",
+    "POST_18",
+    "POST_19"
+  ],
+  "join_to_comment_corpus": "The Post Register column post_url matches all 19 stripped URLs in the raw corpus. Every comment can be attached to exactly one post_id. The join is a URL match. It does not independently verify the publication dates.",
+  "authority": "The workbook read-me states that summaries reflect details described by the user and are not independent verification of the original posts. evidence_status remains user-described or unresolved. publication_verification_status and verification_method are not columns in this workbook. NB8_STEP4_V2_Post_Register.csv and NB8_STEP4_V3_Post_Register.csv are not in the project folder. POST_17 and POST_18 still carry unresolved content notes.",
+  "unresolved_posts": [
+    "POST_17",
+    "POST_18"
+  ]
+}

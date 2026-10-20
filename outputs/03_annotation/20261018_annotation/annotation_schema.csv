@@ -1,0 +1,14 @@
+﻿field,role,n_nonempty,n_distinct_values
+annotation_id,Identifier for the annotated row. Unique in this file.,1199,1199
+comment_id,Identifier within a source post. Not unique across posts.,1199,519
+comment,Comment text stored in the annotation file. Compared with the raw text below.,1199,1199
+platform,Platform value stored with the annotation.,1199,1
+post_url,Source-post URL stored with the annotation.,1199,20
+collection_date,Collection timestamp stored in the annotation file.,1199,19
+collection_date_original,Earlier string form of the collection timestamp. Not a publication date.,1199,20
+policy_relevance,Supervised target.,1199,3
+feedback_type,Supervised target.,1199,8
+topic,"Supervised target. This is the manual topic label, not an unsupervised topic.",1199,8
+sentiment,Supervised target.,1199,4
+actor,Stored label. Not one of the four supervised tasks.,1199,5
+annotation_status,Status stored on the row. Every row in this file says annotated.,1199,1

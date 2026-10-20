@@ -1,0 +1,20 @@
+post_id,publication_date,event_period,n_comments,linkage_class,comparison_response_ids
+POST_01,2025-10-27,pre_event,1013,thematically related,RESP_001
+POST_02,2023-09-16,pre_event,660,unlinked/unresolved,
+POST_03,2025-10-02,pre_event,642,thematically related,
+POST_04,2025-11-04,post_event,505,thematically related,RESP_001; RESP_002
+POST_05,2023-10-02,pre_event,320,unlinked/unresolved,
+POST_06,2026-07-14,post_event,317,unlinked/unresolved,
+POST_07,2025-12-12,post_event,267,unlinked/unresolved,
+POST_08,2026-07-06,post_event,236,unlinked/unresolved,
+POST_09,2025-11-03,event_day,212,temporally associated,RESP_001
+POST_10,2025-10-18,pre_event,200,unlinked/unresolved,
+POST_11,2026-06-23,post_event,163,unlinked/unresolved,
+POST_12,2025-09-26,pre_event,160,thematically related,
+POST_13,2026-05-13,post_event,124,unlinked/unresolved,
+POST_14,2025-09-18,pre_event,97,unlinked/unresolved,
+POST_15,2026-07-08,post_event,95,unlinked/unresolved,
+POST_16,2023-09-16,pre_event,92,unlinked/unresolved,
+POST_17,2025-12-26,post_event,73,unlinked/unresolved,
+POST_18,2026-03-19,post_event,64,unlinked/unresolved,
+POST_19,2024-01-30,pre_event,52,unlinked/unresolved,

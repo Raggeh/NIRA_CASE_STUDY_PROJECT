@@ -1,0 +1,66 @@
+{
+  "seed": 42,
+  "split": "stratified 70 percent train, 10 percent validation, 20 percent test",
+  "selection_metric": "validation macro-F1",
+  "test_used_for_selection": false,
+  "model_text": "comment_whitespace_normalized from the raw working corpus",
+  "embedding_model": "paraphrase-multilingual-MiniLM-L12-v2",
+  "language_limitation": "Embedding scores do not establish that the multilingual model understands Somali.",
+  "tasks": {
+    "policy_relevance": {
+      "model": "complement_nb",
+      "validation_macro_f1": 0.5393268040076551,
+      "test_macro_f1": 0.4913595227261236,
+      "n_classes": 3,
+      "classes": [
+        "not_relevant",
+        "relevant",
+        "uncertain"
+      ]
+    },
+    "feedback_type": {
+      "model": "logistic_regression",
+      "validation_macro_f1": 0.3114306848177816,
+      "test_macro_f1": 0.41991806476612403,
+      "n_classes": 8,
+      "classes": [
+        "complaint",
+        "criticism",
+        "experience",
+        "information",
+        "other",
+        "question",
+        "request",
+        "support"
+      ]
+    },
+    "topic": {
+      "model": "complement_nb",
+      "validation_macro_f1": 0.5086982991394756,
+      "test_macro_f1": 0.4102326859028919,
+      "n_classes": 8,
+      "classes": [
+        "corruption_unofficial_payment",
+        "delay_processing",
+        "documentation_requirements",
+        "government_policy",
+        "identity_card",
+        "other",
+        "registration",
+        "service_access"
+      ]
+    },
+    "sentiment": {
+      "model": "complement_nb",
+      "validation_macro_f1": 0.5467895458578689,
+      "test_macro_f1": 0.5001346647819677,
+      "n_classes": 4,
+      "classes": [
+        "negative",
+        "neutral",
+        "positive",
+        "uncertain"
+      ]
+    }
+  }
+}

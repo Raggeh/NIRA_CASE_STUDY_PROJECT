@@ -1,0 +1,3 @@
+This run read Publication Date Verification.xlsx before the Post Register had a post_url column.
+
+The workbook now has post_url. The corrected join is in outputs/01_data_preparation/20261018_post_url/. All 19 register URLs match the 19 comment-file URLs and cover 5,292 comments. Use that later run for the crosswalk.

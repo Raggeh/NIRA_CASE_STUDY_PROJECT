@@ -1,0 +1,11 @@
+NIRA_Facebook_Datasets_5292.csv
+raw_corpus_working.csv
+Annotation Dataset/
+Thesis/
+~$*.docx
+*.tmp
+__pycache__/
+*.pyc
+*.zip
+checkpoints/
+.ipynb_checkpoints/

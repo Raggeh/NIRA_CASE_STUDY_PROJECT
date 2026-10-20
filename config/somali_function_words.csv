@@ -1,0 +1,58 @@
+word,role,note
+waa,copula,Attested in at least 30 comments. Grammatical word removed only from the topic-model vectorizer.
+wa,copula,Spelling variant of waa.
+ka,adposition,Attested grammatical token.
+ku,adposition,Attested grammatical token.
+la,clitic,Attested grammatical token.
+ah,copula,Attested grammatical token.
+oo,conjunction,Attested grammatical token.
+iyo,conjunction,Attested grammatical token.
+ee,linker,Attested grammatical token.
+ma,particle,Question or negative particle.
+aan,particle,Negative or subject clitic.
+in,complementizer,Attested grammatical token.
+ayaa,focus,Attested grammatical token.
+baa,focus,Attested grammatical token.
+wax,focus,Cleft particle. The same spelling can mean thing; it is removed because it dominated topics as a function word.
+waxa,focus,Attested grammatical token.
+waxaa,focus,Attested grammatical token.
+waxaan,focus,Attested grammatical token.
+ee,linker,Duplicate avoided at load time.
+soo,particle,Directional particle.
+si,particle,Attested grammatical token.
+ay,pronoun,Attested grammatical token.
+uu,pronoun,Attested grammatical token.
+aniga,pronoun,Attested grammatical token.
+idinka,pronoun,Attested grammatical token.
+aad,pronoun,Attested grammatical token.
+iga,clitic,Attested grammatical token.
+loo,clitic,Attested grammatical token.
+laga,clitic,Attested grammatical token.
+lagu,clitic,Attested grammatical token.
+looga,clitic,Attested grammatical token.
+loogu,clitic,Attested grammatical token.
+ugu,clitic,Attested grammatical token.
+uga,clitic,Attested grammatical token.
+iska,clitic,Attested grammatical token.
+na,clitic,Attested grammatical token.
+ba,clitic,Attested grammatical token.
+buu,clitic,Attested grammatical token.
+ayuu,clitic,Attested grammatical token.
+ayay,clitic,Attested grammatical token.
+ayaan,clitic,Attested grammatical token.
+yaan,clitic,Attested grammatical token.
+kaa,clitic,Attested grammatical token.
+kii,demonstrative,Attested grammatical token.
+ha,particle,Attested grammatical token.
+hala,particle,Attested grammatical token.
+miyaa,particle,Attested grammatical token.
+maxaa,particle,Attested grammatical token.
+ama,conjunction,Attested grammatical token.
+marka,conjunction,Attested grammatical token.
+hada,adverb,Now. Removed as a discourse adverb.
+ilaa,preposition,Until.
+yahay,copula,Attested grammatical token.
+tahay,copula,Attested grammatical token.
+yihiin,copula,Attested grammatical token.
+ahaa,copula,Attested grammatical token.
+waan,clitic,Attested grammatical token.

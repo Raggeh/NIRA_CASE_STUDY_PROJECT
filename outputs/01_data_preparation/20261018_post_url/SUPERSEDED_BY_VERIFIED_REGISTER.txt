@@ -1,0 +1,3 @@
+This run joined post_url before the workbook added publication_date_status, post_url_status, content_evidence_status, and verification_basis.
+
+The current register is saved in outputs/01_data_preparation/20261018_verified_register/. POST_08's publication date in that run is 2026-07-06. This earlier run still has 2026-07-07 for POST_08.

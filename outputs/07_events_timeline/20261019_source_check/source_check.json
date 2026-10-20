@@ -1,0 +1,86 @@
+{
+  "checked_on": "2026-10-19",
+  "responses_retrieved": 5,
+  "directly_linked_posts": 0,
+  "annotator_note": "The researcher annotated the 1,199 comments. A separate codebook and a second coder are not part of this study.",
+  "evaluation_rule": "Held-out test macro-F1 is the performance result. Labels on all 5,292 comments are predictions from the refit model.",
+  "responses": [
+    {
+      "response_id": "RESP_001",
+      "url": "https://sonna.so/en/director-general-of-nira-addresses-citizens-concerns-over-service-delays",
+      "fetch_result": "retrieved",
+      "page_title": "Director General of NIRA Addresses Citizens’ Concerns Over Service Delays",
+      "page_date": "2025-11-03",
+      "inventory_date": "2025-11-03",
+      "date_note": "The byline date matches the inventory date.",
+      "page_statement": "The article says the Director General responded to public concerns after social media posts showed citizens queuing at night for National ID cards, and that Hodan and Bondhere centers would open from 5:00 p.m. to midnight. It also says the National ID is free of charge.",
+      "corpus_link": "The page does not name a Facebook URL from this corpus. POST_01 stays thematically related and POST_09 stays temporally associated."
+    },
+    {
+      "response_id": "RESP_002",
+      "url": "https://nira.gov.so/news/nira-blog-3",
+      "fetch_result": "retrieved",
+      "page_title": "NIRA Opens Third Registration Center Operating Day and Night Shifts",
+      "page_date": "2025-11-10",
+      "inventory_date": "2025-11-10",
+      "date_note": "The page dateline matches the inventory date.",
+      "page_statement": "The page says NIRA inaugurated a permanent registration center in Wadajir on the evening of 10 November 2025, described as the third center operating day and night shifts.",
+      "corpus_link": "No corpus post is named. This remains an inventory communication, not a direct response to a comment."
+    },
+    {
+      "response_id": "RESP_003",
+      "url": "https://www.nira.gov.so/news/nira-inaugurates-new-national-id-registration-and-issuance-center-in-heliwaa-district-1",
+      "fetch_result": "retrieved",
+      "page_title": "NIRA Inaugurates New National ID Registration and Issuance Center in Heliwaa District",
+      "page_date": "2025-09-22",
+      "inventory_date": "2025-09-22",
+      "date_note": "The page dateline matches the inventory date.",
+      "page_statement": "The page says a registration and issuance center in Heliwaa opened on 22 September 2025 and describes it as the 15th such facility in Mogadishu districts.",
+      "corpus_link": "No corpus post is named. This remains an inventory communication, not a direct response to a comment."
+    },
+    {
+      "response_id": "RESP_004",
+      "url": "https://centralbank.gov.so/strengthening-kyc-and-real-time-id-verification-in-the-banking-sector/",
+      "fetch_result": "retrieved",
+      "page_title": "Strengthening KYC and Real-Time ID Verification in the Banking Sector",
+      "page_date": "2025-07-30",
+      "inventory_date": "2025-07-30",
+      "date_note": "The page list date is 30 July 2025. The notice body says 29 July 2025. Both dates are on the retrieved page. The measures are stated to take effect on 1 September 2025 in Banadir.",
+      "page_statement": "The notice says no new bank account shall be opened without a valid NIRA National ID, effective 1 September 2025 for Banadir and later elsewhere.",
+      "corpus_link": "No corpus post is named. This remains an inventory communication, not a direct response to a comment."
+    },
+    {
+      "response_id": "RESP_005",
+      "url": "https://sonna.so/en/immigration-agency-postpones-national-id-requirement-for-domestic-travel-implementation-moved-to-march-1/",
+      "fetch_result": "retrieved",
+      "page_title": "Immigration Agency Postpones National ID Requirement for Domestic Travel; Implementation Moved to March 1",
+      "page_date": "2026-01-01",
+      "inventory_date": "2026-01-01",
+      "date_note": "The byline date matches the inventory date.",
+      "page_statement": "The article says the domestic-travel National ID requirement was initially set for 1 January 2026 and was postponed to 1 March 2026.",
+      "corpus_link": "No corpus post is named. POST_06 stays unlinked."
+    }
+  ],
+  "posts": [
+    {
+      "post_id": "POST_17",
+      "facebook_url": "https://www.facebook.com/share/v/1DGzDhdKuS/",
+      "facebook_fetch": "403 on the automated fetch. The researcher later supplied a screenshot of the open Reel.",
+      "related_page": "https://www.youtube.com/watch?v=lx5oyqEf98U",
+      "related_page_fetch": "The YouTube page was not retrieved in this check.",
+      "caption_as_shown": "Safaaradda Soomaaliya ee dalka Uganda oo bilowday inay bixiso Kaarka Aqoonsiga Qaranka ee NIRA.",
+      "result": "The caption is recorded from the researcher screenshot. It states that the Somali Embassy in Uganda has begun issuing the NIRA national ID card. The reel audio was not transcribed."
+    },
+    {
+      "post_id": "POST_18",
+      "facebook_url": "https://www.facebook.com/photo/?fbid=933559576313414&set=a.171201679215878",
+      "facebook_fetch": "403 on the automated fetch. The researcher later supplied a screenshot of the open post.",
+      "related_page": "https://moi.gov.so/news-detail.php?slug=federal-government-of-somalias-weekly-briefing-mogadishu-friday-20th-march-2026-eid-mubarak",
+      "related_page_fetch": "Retrieved. The Ministry of Information briefing is dated 20 March 2026 and includes Eid al-Fitr congratulations. It is not the NIRA Facebook caption.",
+      "second_page": "https://untmis.unmissions.org/en/news/un-extends-warmest-wishes-all-somalis-eid-al-fitr",
+      "second_page_fetch": "Retrieved. UNTMIS published Eid al-Fitr wishes dated 19 March 2026. That page is not the NIRA Facebook caption.",
+      "caption_as_shown": "Ciid Mubarak! Hay'adda NIRA waxa ay shacabka Soomaaliyeed iyo guud ahaan ummadda Islaamka ugu hambalyaynaysaa Munaasabadda Barakaysan ee Ciidul-Fidriga.",
+      "result": "The caption is recorded from the researcher screenshot. It is an Eid al-Fitr greeting. The graphic reads CIID MUBAARAK. The header date reads March 19."
+    }
+  ]
+}

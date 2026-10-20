@@ -1,0 +1,13 @@
+task,split,n_rows
+policy_relevance,train,839
+policy_relevance,validation,120
+policy_relevance,test,240
+feedback_type,train,839
+feedback_type,validation,120
+feedback_type,test,240
+topic,train,839
+topic,validation,120
+topic,test,240
+sentiment,train,839
+sentiment,validation,120
+sentiment,test,240

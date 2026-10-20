@@ -1,0 +1,2 @@
+annotation_id,record_field,original_value,corrected_value,corrected_on,reason,source_file_changed,models_retrained
+ANN_0031,sentiment,positive,neutral,2026-10-19,"The comment asks what solution exists if a card is lost. The researcher confirmed that positive does not fit. The other three labels stay: relevant, question, identity_card.",false,false

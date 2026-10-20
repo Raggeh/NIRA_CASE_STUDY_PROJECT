@@ -1,0 +1,9 @@
+,corruption_unofficial_payment,delay_processing,documentation_requirements,government_policy,identity_card,other,registration,service_access
+corruption_unofficial_payment,36,0,1,1,2,2,0,4
+delay_processing,1,13,0,0,3,2,0,0
+documentation_requirements,0,1,1,0,1,0,0,0
+government_policy,2,4,0,3,2,7,0,0
+identity_card,4,4,0,1,9,8,0,4
+other,27,2,0,3,7,32,0,7
+registration,1,1,0,1,2,0,1,0
+service_access,6,4,0,2,2,6,1,19

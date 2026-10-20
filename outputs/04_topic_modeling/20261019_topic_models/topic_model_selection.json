@@ -1,0 +1,14 @@
+{
+  "selected_family": "NMF",
+  "selected_setting": "k=6",
+  "n_topics": 6,
+  "coherence_c_npmi": 0.058336388322863635,
+  "topic_diversity": 0.7833333333333333,
+  "coverage": 0.9788359788359788,
+  "outlier_share": 0.021164021164021163,
+  "unassigned_comments": 112,
+  "comments_in_corpus": 5292,
+  "selection_rule": "The selected model is the coverage-eligible candidate with the highest c_npmi. Coverage-eligible means a topic was assigned to at least 80 percent of the 5,292 comments.",
+  "manual_labels_used_as_training_target": false,
+  "language_limitation": "Top terms are Somali word forms from a statistical model. Coherence does not confirm that a topic is a meaningful public-policy theme. The embedding model is multilingual and is not evidence of Somali understanding."
+}

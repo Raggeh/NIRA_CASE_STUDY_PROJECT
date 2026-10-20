@@ -1,0 +1,6 @@
+﻿field,n_classes,largest_class,largest_n,smallest_class,smallest_n,largest_share_of_annotated
+actor,5,uncertain,631,official,33,0.5262718932443703
+feedback_type,8,complaint,317,information,21,0.26438698915763137
+policy_relevance,3,relevant,821,uncertain,141,0.6847372810675563
+sentiment,4,negative,510,uncertain,83,0.42535446205170974
+topic,8,other,390,documentation_requirements,17,0.32527105921601335

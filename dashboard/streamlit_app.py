@@ -53,7 +53,8 @@ def kpis(items):
     cards = []
     for icon, value, label in items:
         cards.append(
-            f'<article class="kpi"><span class="mi">{icon}</span><b>{value}</b><small>{label}</small></article>'
+            f'<article class="kpi" style="box-sizing:border-box;padding:28px 20px 24px;min-height:168px;">'
+            f'<span class="mi">{icon}</span><b>{value}</b><small>{label}</small></article>'
         )
     st.markdown(f'<div class="kpi-grid">{"".join(cards)}</div>', unsafe_allow_html=True)
 
@@ -167,7 +168,7 @@ def apply_theme():
         .hero p { margin: 0; max-width: 820px; font-size: 15px; line-height: 1.45; color: rgba(255,255,255,0.94); }
         .hero-icon { font-size: 20px; vertical-align: -3px; margin-right: 8px; }
         .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 8px 0 14px; }
-        .kpi { background: white; border: 1px solid #d5e8f6; border-radius: 16px; padding: 22px 18px 16px; min-height: 136px; box-shadow: 0 8px 20px rgba(12, 79, 134, 0.05); overflow: visible; }
+        .kpi { background: white; border: 1px solid #d5e8f6; border-radius: 16px; padding: 28px 20px 24px !important; min-height: 168px !important; height: auto !important; box-sizing: border-box !important; box-shadow: 0 8px 20px rgba(12, 79, 134, 0.05); overflow: visible; }
         .kpi .mi { color: #1d6fb8; font-size: 20px; display: block; line-height: 1; }
         .kpi b { display: block; margin: 6px 0 0; font-size: 28px; color: #0b4f86; line-height: 1.1; }
         .kpi small { display: block; margin-top: 4px; color: #3e627f; font-size: 13px; line-height: 1.3; }

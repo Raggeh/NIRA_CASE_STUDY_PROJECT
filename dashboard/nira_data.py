@@ -144,6 +144,7 @@ def load():
         "class_metrics": classification_rows(reports),
         "matrices": matrices,
         "refit": pd.read_csv(ROOT / "outputs/06_results_predictions/20261019_predictions/refit_agreement.csv"),
+        "pseudo": pd.read_csv(ROOT / "outputs/06_results_predictions/20261022_pseudo_label_retrain/comparison.csv"),
         "distribution": pd.read_csv(ROOT / "outputs/06_results_predictions/20261019_predictions/label_distribution_comparison.csv"),
         "sample": sample,
         "overlap": json.loads((ROOT / "outputs/06_results_predictions/20261019_predictions/sample_overlap.json").read_text(encoding="utf-8")),

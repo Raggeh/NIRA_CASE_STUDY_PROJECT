@@ -575,6 +575,23 @@ def classification():
         width="stretch",
         hide_index=True,
     )
+    section("model_training", "Retraining with predicted labels for the 4,093 comments")
+    st.caption(
+        "The original test model, fit on the 839 training comments, labelled the 4,093 comments that have no manual label. "
+        "Those predictions were added to the 839 training labels, and the same model was trained again. "
+        "The 240 test comments were left out of that training. The last column is agreement after a fit on all 1,199 manual labels plus the same predictions. "
+        "That agreement is not a test score, and the 4,093 predictions are not verified labels."
+    )
+    pseudo = bundle["pseudo"].copy()
+    pseudo["Task"] = pseudo["task"].map(TASK_NAMES)
+    pseudo["Original test macro-F1"] = pseudo["original_test_macro_f1"].map(lambda value: f"{value:.3f}")
+    pseudo["Retrained test macro-F1"] = pseudo["pseudo_heldout_test_macro_f1"].map(lambda value: f"{value:.3f}")
+    pseudo["Combined agreement macro-F1"] = pseudo["combined_1199_plus_4093_agreement_macro_f1"].map(lambda value: f"{value:.3f}")
+    st.dataframe(
+        pseudo[["Task", "Original test macro-F1", "Retrained test macro-F1", "Combined agreement macro-F1"]],
+        width="stretch",
+        hide_index=True,
+    )
     task = st.selectbox("Task", list(TASK_NAMES), format_func=lambda key: TASK_NAMES[key])
     winner = winners[task]
     score = bundle["heldout"].loc[bundle["heldout"]["task"] == task].iloc[0]

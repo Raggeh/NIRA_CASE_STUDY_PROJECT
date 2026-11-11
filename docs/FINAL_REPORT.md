@@ -2,25 +2,25 @@
 
 ## Question and data
 
-The study asks how public Facebook comments on posts about Somalia's National Identification and Registration Authority can be described, classified, and placed next to inventoried institutional communications. The working corpus contains 5292 comments under 19 source posts. The manually annotated subset contains 1199 comments, which is 22.7% of the corpus. Every annotated key matches a raw comment.
+The study asks how public Facebook comments on posts about Somalia's National Identification and Registration Authority can be described, classified, and placed next to inventoried institutional communications. The working corpus contains 5292 comments under 19 source posts. The annotated file contains 3500 comments, which is 66.1% of the corpus. Every annotated key matches a raw comment. 1199 of those rows have an annotation id. 2301 labeled rows do not.
 
 `collection_date` is the time the comment file was collected. `publication_date_register` is the researcher-verified publication date of the source post. The two dates are not substitutes.
 
 ## Annotation
 
-All 1,199 annotation keys match a raw comment. Twenty-five text differences are retained in the mismatch register and were not overwritten. One of those differences is a phone number redacted in the annotation file. The annotated share of each post is about 22 to 23 percent. No sampling protocol is stored in the project files.
+All 3,500 annotation keys match a raw comment. Text match on the joined rows: 3475 exact, 12 whitespace only, and 13 character differences. The annotated share is no longer about 22 to 23 percent of every post, because the file now covers 3,500 comments.
 
-The 1,199 comments were annotated by the researcher. A separate codebook and a second coder are not part of this study. One later correction is recorded: ANN_0031 sentiment changes from positive to neutral, because the comment asks what to do if a card is lost. The original annotation file is unchanged, and the models were not retrained. The four supervised tasks are `policy_relevance`, `feedback_type`, `topic`, and `sentiment`. `actor` is described below and is not one of those tasks. No class was merged.
+The four supervised tasks are `policy_relevance`, `feedback_type`, `topic`, and `sentiment`. `actor` is stored in the file and is not one of those tasks. No class was merged.
 
 | field | n_classes | largest_class | largest_n | smallest_class | smallest_n | largest_share_of_annotated |
 | --- | --- | --- | --- | --- | --- | --- |
-| actor | 5 | uncertain | 631 | official | 33 | 0.526 |
-| feedback_type | 8 | complaint | 317 | information | 21 | 0.264 |
-| policy_relevance | 3 | relevant | 821 | uncertain | 141 | 0.685 |
-| sentiment | 4 | negative | 510 | uncertain | 83 | 0.425 |
-| topic | 8 | other | 390 | documentation_requirements | 17 | 0.325 |
+| actor | 5 | uncertain | 1721 | official | 63 | 0.492 |
+| feedback_type | 8 | complaint | 822 | information | 73 | 0.235 |
+| policy_relevance | 3 | relevant | 2573 | uncertain | 241 | 0.735 |
+| sentiment | 4 | negative | 1775 | uncertain | 120 | 0.507 |
+| topic | 8 | other | 964 | documentation_requirements | 33 | 0.275 |
 
-Shares use the 1,199 annotated comments as the denominator.
+Shares use the 3,500 labeled comments as the denominator.
 
 ## Unsupervised topics
 
@@ -61,29 +61,29 @@ Top terms are Somali word forms from a statistical model after the project funct
 
 ## Supervised classification
 
-Each task compared five models on a stratified split of the 1,199 labeled comments: 70 percent train, 10 percent validation, and 20 percent test, with seed 42. The selected model is the one with the highest validation macro-F1. The test split was scored after selection and was not used to choose the model.
+Each task compared five models on a stratified split of the 3,500 labeled comments: 70 percent train, 10 percent validation, and 20 percent test, with seed 42. The split is 2,450 / 350 / 700. The selected model is the one with the highest validation macro-F1. The test split was scored after selection and was not used to choose the model.
 
 | task | selected_model | validation_macro_f1 | test_macro_f1 | test_weighted_f1 | test_accuracy |
 | --- | --- | --- | --- | --- | --- |
-| policy_relevance | complement_nb | 0.539 | 0.491 | 0.703 | 0.733 |
-| feedback_type | logistic_regression | 0.311 | 0.420 | 0.474 | 0.475 |
-| topic | complement_nb | 0.509 | 0.410 | 0.460 | 0.475 |
-| sentiment | complement_nb | 0.547 | 0.500 | 0.589 | 0.613 |
+| policy_relevance | logistic_regression | 0.687 | 0.665 | 0.840 | 0.837 |
+| feedback_type | logistic_regression | 0.646 | 0.701 | 0.737 | 0.734 |
+| topic | complement_nb | 0.669 | 0.578 | 0.679 | 0.691 |
+| sentiment | complement_nb | 0.687 | 0.641 | 0.780 | 0.793 |
 
 The TF-IDF classifiers use letter tokens and word bigrams. They do not use the function-word list, because that list was applied only to the topic models. The fifth model is logistic regression on the multilingual embeddings. Its score does not show that those embeddings understand Somali.
 
-The performance result is the held-out test macro-F1 in the table above. The label written for each of the 5,292 comments is a prediction from the selected model after it was refit on the 1,199 labeled rows.
+The performance result is the held-out test macro-F1 in the table above. The label written for each of the 5,292 comments is a prediction from the selected model after it was refit on the 3,500 labeled rows.
 
 ## Corpus predictions and comment comparison
 
-The selected model for each task was refit on all 1,199 labeled comments and then applied to all 5,292 comments. The refit has seen the labels that a held-out test is meant to hide, so the agreement below is not the performance result. The performance result remains the test macro-F1 in the table above.
+The selected model for each task was refit on all 3,500 labeled comments and then applied to all 5,292 comments. The refit has seen the labels that a held-out test is meant to hide, so the agreement below is not the performance result. The performance result remains the test macro-F1 in the table above.
 
 | task | selected_model | heldout_test_macro_f1 | refit_agreement_macro_f1 | refit_agreement_accuracy |
 | --- | --- | --- | --- | --- |
-| policy_relevance | complement_nb | 0.491 | 0.853 | 0.905 |
-| feedback_type | logistic_regression | 0.420 | 0.862 | 0.861 |
-| topic | complement_nb | 0.410 | 0.902 | 0.885 |
-| sentiment | complement_nb | 0.500 | 0.869 | 0.890 |
+| policy_relevance | logistic_regression | 0.665 | 0.937 | 0.965 |
+| feedback_type | logistic_regression | 0.701 | 0.910 | 0.916 |
+| topic | complement_nb | 0.578 | 0.931 | 0.935 |
+| sentiment | complement_nb | 0.641 | 0.897 | 0.936 |
 
 The comment sample contains 30 unique comments: 10 annotated, 10 unlabeled, and 10 further comments. Overlap between the samples is 0. Every comment receives a prediction. The third sample is not a separate dataset. It is ten further comments drawn from the rows that were not already sampled. The unsupervised topic columns come from notebook 04 and use a different label space from the manual topic classes.
 
@@ -123,8 +123,8 @@ The figures are saved from the tables above in `outputs/08_results_visualization
 
 ## Limits
 
-- The annotated rows are about 22 to 23 percent of every post. No sampling protocol is stored in the files, so the 1,199 rows are a manually labeled subset rather than a demonstrated random sample.
-- The 1,199 comments were annotated by the researcher. ANN_0031 sentiment is corrected from positive to neutral in the correction register. The original file and the trained models keep the earlier label.
+- The labeled file has 3,500 rows joined to the raw corpus. 1,199 rows have an annotation id. 2,301 labeled rows do not.
+- The four supervised tasks were retrained on those 3,500 rows. Seed 42. Selection used validation macro-F1 only.
 - Comments are short, mostly Somali, and written in informal Latin script. A few comments use Arabic script. Coherence and embedding distance are statistical descriptions, not a language-understanding test.
 - The largest classes are `relevant`, `complaint`, `other`, and `negative`. Macro-F1 gives equal weight to rare classes, including classes with few test rows.
 - Twenty-five annotation strings differ from the raw comment. Training used the raw working-corpus text. One difference is a redacted phone number. Excerpts in the sample redact phone-like strings.

@@ -14,12 +14,17 @@ ANNOTATION_XLSX = (
     / "Annotation Dataset"
     / "NIRA_Annotation_Master_1199_Modeling_final.xlsx"
 )
+ANNOTATION_CSV = (
+    PROJECT_ROOT
+    / "Annotation Dataset"
+    / "NIRA_Annotated_Master_3500.csv"
+)
 PUBLICATION_XLSX = PROJECT_ROOT / "Publication Date Verification.xlsx"
 
 RANDOM_SEED = 42
 
 EXPECTED_RAW_N = 5292
-EXPECTED_ANNOTATION_N = 1199
+EXPECTED_ANNOTATION_N = 3500
 EXPECTED_N_POSTS = 19
 
 RAW_COLUMNS = [

@@ -1,0 +1,5 @@
+task,selected_model,original_test_macro_f1,pseudo_heldout_test_macro_f1,combined_agreement_macro_f1,unlabeled_rows,labeled_rows,note
+policy_relevance,logistic_regression,0.665024363945648,0.6351016070874227,0.9176607500132811,1792,3500,Combined agreement uses the labeled rows in training. It is not a test score.
+feedback_type,logistic_regression,0.7013571389868831,0.676218362711011,0.8862101895439815,1792,3500,Combined agreement uses the labeled rows in training. It is not a test score.
+topic,complement_nb,0.5776449567132214,0.4517133505128945,0.9006481627119773,1792,3500,Combined agreement uses the labeled rows in training. It is not a test score.
+sentiment,complement_nb,0.6411358633366314,0.587346490768166,0.875592863436587,1792,3500,Combined agreement uses the labeled rows in training. It is not a test score.

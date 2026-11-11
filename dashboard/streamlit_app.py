@@ -304,13 +304,13 @@ def overview():
         "home",
     )
     guide([
-        ("database", "Raw comments, manual annotations, and model predictions are three different counts."),
+        ("database", f"The labeled file has {eda['annotated_comments']:,} comments. {eda['rows_with_annotation_id']:,} rows have an annotation id. {eda['rows_without_annotation_id']:,} labeled rows do not."),
         ("category", "The cited topic model is the function-word LDA run, not the earlier NMF run."),
         ("sync", "A shared topic or a nearby date is a comparison. It is not evidence that one item caused the next."),
     ])
     kpis([
         ("database", f"{eda['raw_comments']:,}", "Raw Facebook comments"),
-        ("edit_note", f"{eda['annotated_comments']:,}", "Manually annotated"),
+        ("edit_note", f"{eda['annotated_comments']:,}", "Labeled comments"),
         ("model_training", f"{bundle['n_predictions']:,}", "Comments with a prediction"),
         ("category", str(selection["n_topics"]), "Cited LDA topics"),
         ("campaign", str(eda["source_posts"]), "Source posts"),
@@ -340,12 +340,14 @@ def overview():
         width="stretch",
     )
     section("mood", "Sentiment: manual labels and full-corpus predictions")
-    st.caption("The left series is the 1,199 manual labels. The right series is the selected model applied to all 5,292 comments. Predicted labels are not ground truth.")
+    labeled = int(bundle["eda"]["annotated_comments"])
+    unlabeled = int(bundle["eda"]["raw_comments"]) - labeled
+    st.caption(f"The left series is the {labeled:,} labels in the annotated file. The right series is the selected model applied to all 5,292 comments. Predicted labels are not ground truth.")
     sentiment = bundle["distribution"].loc[bundle["distribution"]["task"] == "sentiment"].copy()
     manual = sentiment.loc[sentiment["scope"] == "manual_annotated"]
     predicted = sentiment.loc[sentiment["scope"] == "refit_prediction_on_all_comments"]
     figure = go.Figure()
-    figure.add_bar(name="Manual · 1,199", x=manual["label"], y=manual["n"], marker_color="#0b4f86")
+    figure.add_bar(name=f"Annotated file · {labeled:,}", x=manual["label"], y=manual["n"], marker_color="#0b4f86")
     figure.add_bar(name="Predicted · 5,292", x=predicted["label"], y=predicted["n"], marker_color="#7ec8f8")
     figure.update_layout(
         barmode="group",
@@ -371,9 +373,10 @@ def overview():
             st.caption(f"Test macro-F1 {body['test_macro_f1']:.3f}")
     with st.expander("Methodological limits"):
         st.markdown(
-            f"- Only {eda['annotated_comments']:,} of {eda['raw_comments']:,} comments have a manual label "
-            f"({eda['annotated_share_of_raw'] * 100:.1f} percent), because the time available for manual annotation was limited. "
-            "The other 4,093 comments were not annotated and have predictions only.\n"
+            f"- The annotated file contains {eda['annotated_comments']:,} of {eda['raw_comments']:,} comments "
+            f"({eda['annotated_share_of_raw'] * 100:.1f} percent). "
+            f"{eda['rows_with_annotation_id']:,} rows have an annotation id. "
+            f"{eda['rows_without_annotation_id']:,} labeled rows do not.\n"
             "- No stance task was annotated or modelled.\n"
             f"- BERTopic uses {bundle['embedding']['model_name']}. "
             "That embedding does not show that the model understands Somali.\n"
@@ -552,17 +555,18 @@ def classification():
     hero(
         "CLASSIFICATION",
         "Four tasks, selected on validation macro-F1",
-        "The test split was scored after the model was chosen. Labels on all 5,292 comments come from a refit on the 1,199 annotated rows.",
+        f"The test split was scored after the model was chosen. Labels on all 5,292 comments come from a refit on the {int(bundle['eda']['annotated_comments']):,} labeled rows.",
         "account_tree",
     )
     guide([
-        ("compare_arrows", "Agreement between the 1,199 human labels and the predictions on those same comments."),
+        ("compare_arrows", f"Agreement between the {int(bundle['eda']['annotated_comments']):,} labeled rows and the predictions on those same comments."),
         ("bar_chart", "Validation scores for the five compared models."),
         ("grid_on", "Held-out precision, recall, F1, and the test confusion matrix."),
     ])
     section("compare_arrows", "Agreement with the human labels")
-    st.warning("These matches are on the 1,199 annotated comments only. The model was refit on those labels first, so this agreement is not the test score. The other 4,093 comments have a prediction and no human label.")
     labeled = int(bundle["eda"]["annotated_comments"])
+    unlabeled = int(bundle["eda"]["raw_comments"]) - labeled
+    st.warning(f"These matches are on the {labeled:,} labeled rows. The model was refit on those labels first, so this agreement is not the test score. The other {unlabeled:,} comments have a prediction and no row in the annotated file.")
     agreement = bundle["refit"].copy()
     agreement["Task"] = agreement["task"].map(TASK_NAMES)
     agreement["Model"] = agreement["selected_model"].map(model_name)
@@ -575,18 +579,18 @@ def classification():
         width="stretch",
         hide_index=True,
     )
-    section("model_training", "Retraining with predicted labels for the 4,093 comments")
+    section("model_training", f"Retraining with predicted labels for the {unlabeled:,} comments")
     st.caption(
-        "The original test model, fit on the 839 training comments, labelled the 4,093 comments that have no manual label. "
-        "Those predictions were added to the 839 training labels, and the same model was trained again. "
-        "The 240 test comments were left out of that training. The last column is agreement after a fit on all 1,199 manual labels plus the same predictions. "
-        "That agreement is not a test score, and the 4,093 predictions are not verified labels."
+        f"The original test model, fit on the training split, labelled the {unlabeled:,} comments that are not in the annotated file. "
+        "Those predictions were added to the training labels, and the same model was trained again. "
+        "The test comments were left out of that training. The last column is agreement after a fit on all labeled rows plus the same predictions. "
+        "That agreement is not a test score."
     )
     pseudo = bundle["pseudo"].copy()
     pseudo["Task"] = pseudo["task"].map(TASK_NAMES)
     pseudo["Original test macro-F1"] = pseudo["original_test_macro_f1"].map(lambda value: f"{value:.3f}")
     pseudo["Retrained test macro-F1"] = pseudo["pseudo_heldout_test_macro_f1"].map(lambda value: f"{value:.3f}")
-    pseudo["Combined agreement macro-F1"] = pseudo["combined_1199_plus_4093_agreement_macro_f1"].map(lambda value: f"{value:.3f}")
+    pseudo["Combined agreement macro-F1"] = pseudo["combined_agreement_macro_f1"].map(lambda value: f"{value:.3f}")
     st.dataframe(
         pseudo[["Task", "Original test macro-F1", "Retrained test macro-F1", "Combined agreement macro-F1"]],
         width="stretch",
@@ -651,7 +655,7 @@ def classification():
     manual = part.loc[part["scope"] == "manual_annotated"]
     predicted = part.loc[part["scope"] == "refit_prediction_on_all_comments"]
     grouped = go.Figure()
-    grouped.add_bar(name="Manual · 1,199", x=manual["label"], y=manual["n"], marker_color="#0b4f86")
+    grouped.add_bar(name=f"Annotated file · {int(bundle['eda']['annotated_comments']):,}", x=manual["label"], y=manual["n"], marker_color="#0b4f86")
     grouped.add_bar(name="Predicted · 5,292", x=predicted["label"], y=predicted["n"], marker_color="#7ec8f8")
     grouped.update_layout(
         barmode="group",
@@ -870,7 +874,7 @@ def quality():
         f"Arabic script: {int(raw['arabic_script'])}. Styled Latin: {int(raw['styled_latin'])}. "
         "Embedding scores do not show that the multilingual model understands Somali."
     )
-    section("balance", "Manual label balance inside the 1,199")
+    section("balance", f"Label balance inside the {int(bundle['eda']['annotated_comments']):,}")
     st.caption("Each row is one annotated field. The largest class is the most common manual label in that field. Actor was annotated and was not one of the four modelled tasks.")
     balance = bundle["balance"]
     st.dataframe(balance, width="stretch", hide_index=True)

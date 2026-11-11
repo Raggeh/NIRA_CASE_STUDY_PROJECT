@@ -380,19 +380,6 @@ def overview():
             st.markdown(f"**{model_name(model)}**")
             st.caption(f"Validation macro-F1 {body['validation_macro_f1']:.3f}")
             st.caption(f"Test macro-F1 {body['test_macro_f1']:.3f}")
-    with st.expander("Methodological limits"):
-        st.markdown(
-            f"- The annotated file contains {eda['annotated_comments']:,} of {eda['raw_comments']:,} comments "
-            f"({eda['annotated_share_of_raw'] * 100:.1f} percent). "
-            f"{eda['rows_with_annotation_id']:,} rows have an annotation id. "
-            f"{eda['rows_without_annotation_id']:,} labeled rows do not.\n"
-            "- No stance task was annotated or modelled.\n"
-            f"- The cited topic model is {selection['selected_family']} {selection['selected_setting']}. "
-            f"{selection['language_limitation']}\n"
-            "- Directly linked posts in the response register: "
-            f"{bundle['period_definition']['directly_linked_posts']}. Pre/post shares are descriptive.\n"
-            "- A codebook and a second coder are not part of the saved study files."
-        )
 
 
 def exploration():
@@ -485,7 +472,6 @@ def exploration():
 def topics():
     bundle = data()
     selection = bundle["topic_selection"]
-    prior = bundle["prior_topic_selection"]
     hero(
         "TOPIC MODELING",
         f"Cited model: {selection['selected_family']} {selection['selected_setting']}",
@@ -544,15 +530,6 @@ def topics():
     if topic_choice != "All cited topics":
         examples = examples.loc[examples["topic_id"] == int(topic_choice)]
     st.dataframe(examples[["topic_id", "post_id", "excerpt"]], width="stretch", hide_index=True)
-    with st.expander("How this differs from the manual topic labels"):
-        st.markdown(
-            f"- The topics above were discovered from all {selection['comments_in_corpus']:,} comments.\n"
-            "- The supervised topic task uses eight manual categories. Those categories were not the topic-model target.\n"
-            "- AfriBERTa and AfroXLMR were compared. Their c_npmi was lower than NMF k=4, so they were not selected.\n"
-            f"- The previous cited run, `{selection['prior_run']}`, selected {prior['selected_family']} {prior['selected_setting']} "
-            f"with coherence {prior['coherence_c_npmi']:.3f}. That run stays saved and is not the cited solution.\n"
-            f"- {selection['language_limitation']}"
-        )
 
 
 def classification():
@@ -724,7 +701,6 @@ def feedback_loop():
     guide([
         ("timeline", "The dated comparison around RESP_001, plus the wider response inventory."),
         ("link", "Linkage class is thematic, temporal, or unresolved. Direct links are zero."),
-        ("warning", "POST_17 and POST_18 captions come from researcher screenshots. POST_08 stays dated 2026-07-06."),
     ])
     def post_line(post_id):
         row = posts.loc[post_id]
@@ -784,21 +760,6 @@ def feedback_loop():
         width="stretch",
         hide_index=True,
     )
-    section("screenshot", "Captions that were not recovered by the automated fetch")
-    for row in bundle["source_posts"].itertuples(index=False):
-        with st.container(border=True):
-            st.markdown(f"**{row.post_id}**")
-            st.write(row.result)
-            st.caption(row.facebook_fetch)
-    with st.expander("Evidence limits"):
-        st.markdown(
-            "- No inventoried communication is classed as a direct response to a source post or to a comment.\n"
-            "- POST_17 reel audio was not transcribed.\n"
-            "- POST_08 keeps the registered publication date 2026-07-06 and stays unlinked.\n"
-            "- Complaint and request patterns in the period charts are predicted labels, not a new manual coding of those periods."
-        )
-
-
 def quality():
     bundle = data()
     quality = bundle["quality"]

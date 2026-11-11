@@ -1,10 +1,13 @@
 """NIRA research dashboard. Reads saved outputs and does not refit models."""
 
+import importlib
+
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from nira_data import GROUP_NAMES, TASK_NAMES, load, model_name
+import nira_data
+from nira_data import GROUP_NAMES, TASK_NAMES, model_name
 
 st.set_page_config(page_title="NIRA Research Dashboard", page_icon="N", layout="wide")
 
@@ -12,9 +15,15 @@ PALETTE = ["#0b4f86", "#1d6fb8", "#3d97d4", "#7ec8f8", "#9fd4f5", "#d5ebf8"]
 
 
 @st.cache_data(show_spinner=False)
-def data():
-    # Reload when the saved-output loader changes. Do not reuse an older cache.
-    return load()
+def data(result_run="20261111_3500"):
+    importlib.reload(nira_data)
+    bundle = nira_data.load()
+    eda = bundle["eda"]
+    relation = bundle.get("relation", {})
+    eda.setdefault("rows_with_annotation_id", relation.get("rows_with_annotation_id", 0))
+    eda.setdefault("rows_without_annotation_id", relation.get("rows_without_annotation_id", 0))
+    bundle["result_run"] = result_run
+    return bundle
 
 
 def ink():

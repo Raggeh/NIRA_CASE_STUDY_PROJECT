@@ -15,7 +15,7 @@ PALETTE = ["#0b4f86", "#1d6fb8", "#3d97d4", "#7ec8f8", "#9fd4f5", "#d5ebf8"]
 
 
 @st.cache_data(show_spinner=False)
-def data(result_run="20261111_3500"):
+def data(result_run="20261111_topics"):
     importlib.reload(nira_data)
     bundle = nira_data.load()
     eda = bundle["eda"]
@@ -314,14 +314,14 @@ def overview():
     )
     guide([
         ("database", f"The labeled file has {eda['annotated_comments']:,} comments. {eda['rows_with_annotation_id']:,} rows have an annotation id. {eda['rows_without_annotation_id']:,} labeled rows do not."),
-        ("category", "The cited topic model is the function-word LDA run, not the earlier NMF run."),
+        ("category", f"The cited topic model is {selection['selected_family']} {selection['selected_setting']}. The earlier cited model was LDA k=6."),
         ("sync", "A shared topic or a nearby date is a comparison. It is not evidence that one item caused the next."),
     ])
     kpis([
         ("database", f"{eda['raw_comments']:,}", "Raw Facebook comments"),
         ("edit_note", f"{eda['annotated_comments']:,}", "Labeled comments"),
         ("model_training", f"{bundle['n_predictions']:,}", "Comments with a prediction"),
-        ("category", str(selection["n_topics"]), "Cited LDA topics"),
+        ("category", str(selection["n_topics"]), "Cited topics"),
         ("campaign", str(eda["source_posts"]), "Source posts"),
         ("link_off", str(bundle["period_definition"]["directly_linked_posts"]), "Directly linked posts"),
     ])
@@ -387,9 +387,8 @@ def overview():
             f"{eda['rows_with_annotation_id']:,} rows have an annotation id. "
             f"{eda['rows_without_annotation_id']:,} labeled rows do not.\n"
             "- No stance task was annotated or modelled.\n"
-            f"- BERTopic uses {bundle['embedding']['model_name']}. "
-            "That embedding does not show that the model understands Somali.\n"
-            f"- {bundle['embedding']['limitation']}\n"
+            f"- The cited topic model is {selection['selected_family']} {selection['selected_setting']}. "
+            f"{selection['language_limitation']}\n"
             "- Directly linked posts in the response register: "
             f"{bundle['period_definition']['directly_linked_posts']}. Pre/post shares are descriptive.\n"
             "- A codebook and a second coder are not part of the saved study files."
@@ -494,8 +493,8 @@ def topics():
         "category",
     )
     guide([
-        ("emoji_events", "LDA k=6 is the cited model because it had the highest coherence among coverage-eligible candidates."),
-        ("compare", "NMF, LDA, and BERTopic from the function-word run are in one comparison table."),
+        ("emoji_events", f"{selection['selected_family']} {selection['selected_setting']} is the cited model because it had the highest coherence among coverage-eligible candidates."),
+        ("compare", "LDA, NMF, LSA, and the Somali-trained embedding models are in one comparison table."),
         ("abc", "Top terms are statistical word forms, not confirmed policy-theme names."),
     ])
     kpis([
@@ -528,7 +527,7 @@ def topics():
         )
     )
     figure.update_layout(title=dict(text="Coherence in the filtered comparison", font=dict(size=16)), xaxis_title="c_npmi")
-    st.plotly_chart(layout(figure, 360), width="stretch")
+    st.plotly_chart(layout(figure, max(360, 28 * len(chart))), width="stretch")
     st.dataframe(shown, width="stretch", hide_index=True)
     section("abc", "Cited topic terms and sizes")
     terms = bundle["topic_terms"].sort_values("n_comments", ascending=False)
@@ -547,12 +546,11 @@ def topics():
     st.dataframe(examples[["topic_id", "post_id", "excerpt"]], width="stretch", hide_index=True)
     with st.expander("How this differs from the manual topic labels"):
         st.markdown(
-            f"- The six topics above were discovered from all {selection['comments_in_corpus']:,} comments.\n"
+            f"- The topics above were discovered from all {selection['comments_in_corpus']:,} comments.\n"
             "- The supervised topic task uses eight manual categories. Those categories were not the topic-model target.\n"
-            f"- BERTopic in this run covered {comparison.loc[comparison['family'] == 'BERTopic', 'coverage'].iloc[0] * 100:.1f} percent, "
-            "so it was not coverage-eligible.\n"
-            f"- An earlier run, `{selection['prior_run']}`, selected {prior['selected_family']} {prior['selected_setting']} "
-            f"with coherence {prior['coherence_c_npmi']:.3f}. Its top terms were mostly function words. It is not the cited solution.\n"
+            "- AfriBERTa and AfroXLMR were compared. Their c_npmi was lower than NMF k=4, so they were not selected.\n"
+            f"- The previous cited run, `{selection['prior_run']}`, selected {prior['selected_family']} {prior['selected_setting']} "
+            f"with coherence {prior['coherence_c_npmi']:.3f}. That run stays saved and is not the cited solution.\n"
             f"- {selection['language_limitation']}"
         )
 
@@ -813,7 +811,7 @@ def quality():
     )
     guide([
         ("fact_check", "Missing cells, exact duplicates, and the comment-ID rule."),
-        ("edit_note", "Annotation match, the ANN_0031 register, and prediction coverage."),
+        ("edit_note", "Annotation match, text differences, and prediction coverage."),
         ("settings", "The modelling seed and the checks that are absent."),
     ])
     kpis([
@@ -853,11 +851,14 @@ def quality():
         for row in bundle["text_match"].itertuples(index=False)
     ])
     st.caption(relation["decision"])
-    correction = bundle["corrections"].iloc[0]
-    st.warning(
-        f"{correction['annotation_id']} sentiment is registered as moving from {correction['original_value']} to {correction['corrected_value']} "
-        f"on {correction['corrected_on']}. {correction['reason']} The original workbook was not changed, and the models were not retrained."
-    )
+    if "annotation_id" in bundle["corrections"].columns:
+        correction = bundle["corrections"].iloc[0]
+        st.warning(
+            f"{correction['annotation_id']} sentiment is registered as moving from {correction['original_value']} to {correction['corrected_value']} "
+            f"on {correction['corrected_on']}. {correction['reason']} The original workbook was not changed, and the models were not retrained."
+        )
+    else:
+        st.caption("The 3,500 file has no correction-register row. The original 1,199 workbook was not changed.")
     section("model_training", "Coverage of saved model outputs")
     left, right = st.columns(2)
     left.plotly_chart(

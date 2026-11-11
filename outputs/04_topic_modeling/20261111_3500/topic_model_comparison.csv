@@ -1,0 +1,27 @@
+model,family,setting,encoder,somali_trained_encoder,n_topics,coherence_c_npmi,topic_diversity,coverage,outlier_share,unassigned_comments,comments_in_corpus
+lda_k4,LDA,k=4,bag_of_words,False,4,-0.0254240329018762,0.75,0.9846938775510204,0.0153061224489795,81,5292
+lda_k6,LDA,k=6,bag_of_words,False,6,0.0310959178218054,0.6833333333333333,0.9846938775510204,0.0153061224489795,81,5292
+lda_k8,LDA,k=8,bag_of_words,False,8,0.0225022149427004,0.675,0.9846938775510204,0.0153061224489795,81,5292
+lda_k10,LDA,k=10,bag_of_words,False,10,0.0326946406980244,0.62,0.9846938775510204,0.0153061224489795,81,5292
+nmf_k4,NMF,k=4,bag_of_words,False,4,0.0840276830463748,0.95,0.9846938775510204,0.0153061224489795,81,5292
+lsa_k4,LSA,k=4,bag_of_words,False,4,0.0551325500354479,0.75,0.9846938775510204,0.0153061224489795,81,5292
+nmf_k6,NMF,k=6,bag_of_words,False,6,0.0315134437522184,0.9166666666666666,0.9846938775510204,0.0153061224489795,81,5292
+lsa_k6,LSA,k=6,bag_of_words,False,6,0.022522153671627,0.6,0.9846938775510204,0.0153061224489795,81,5292
+nmf_k8,NMF,k=8,bag_of_words,False,8,-0.0019394743129333,0.9,0.9846938775510204,0.0153061224489795,81,5292
+lsa_k8,LSA,k=8,bag_of_words,False,8,-0.0585415403885174,0.5625,0.9846938775510204,0.0153061224489795,81,5292
+nmf_k10,NMF,k=10,bag_of_words,False,10,-0.0005235560059838,0.85,0.9846938775510204,0.0153061224489795,81,5292
+lsa_k10,LSA,k=10,bag_of_words,False,10,-0.0896243313636618,0.52,0.9846938775510204,0.0153061224489795,81,5292
+kmeans_afriberta_k4,K-means,afriberta k=4,afriberta,True,4,-0.0265489933334189,0.575,1.0,0.0,0,5292
+kmeans_afriberta_k6,K-means,afriberta k=6,afriberta,True,6,0.0277575008083356,0.5833333333333334,1.0,0.0,0,5292
+kmeans_afriberta_k8,K-means,afriberta k=8,afriberta,True,8,-0.0246857992727854,0.5125,1.0,0.0,0,5292
+kmeans_afriberta_k10,K-means,afriberta k=10,afriberta,True,10,0.0334782920207802,0.57,1.0,0.0,0,5292
+agglomerative_afriberta_k6,Agglomerative,afriberta k=6,afriberta,True,6,-0.0458864327432924,0.5833333333333334,1.0,0.0,0,5292
+hdbscan_afriberta,HDBSCAN,afriberta,afriberta,True,3,-0.0593316881600555,0.8333333333333334,1.0,0.0,0,5292
+bertopic_afriberta,BERTopic,afriberta,afriberta,True,3,-0.0593316881600555,0.8333333333333334,1.0,0.0,0,5292
+kmeans_afroxlmr_k4,K-means,afroxlmr k=4,afroxlmr,True,4,-0.0336556854415945,0.5,1.0,0.0,0,5292
+kmeans_afroxlmr_k6,K-means,afroxlmr k=6,afroxlmr,True,6,-0.0666736665341296,0.45,1.0,0.0,0,5292
+kmeans_afroxlmr_k8,K-means,afroxlmr k=8,afroxlmr,True,8,-0.0627570206697865,0.425,1.0,0.0,0,5292
+kmeans_afroxlmr_k10,K-means,afroxlmr k=10,afroxlmr,True,10,-0.0729967726939494,0.43,1.0,0.0,0,5292
+agglomerative_afroxlmr_k6,Agglomerative,afroxlmr k=6,afroxlmr,True,6,-0.0462398243066109,0.4666666666666667,1.0,0.0,0,5292
+hdbscan_afroxlmr,HDBSCAN,afroxlmr,afroxlmr,True,4,-0.0289355940093684,0.7,1.0,0.0,0,5292
+bertopic_afroxlmr,BERTopic,afroxlmr,afroxlmr,True,4,-0.0289355940093684,0.7,1.0,0.0,0,5292

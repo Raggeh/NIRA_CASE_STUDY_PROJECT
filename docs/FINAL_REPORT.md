@@ -24,40 +24,20 @@ Shares use the 3,500 labeled comments as the denominator.
 
 ## Unsupervised topics
 
-NMF, LDA, and BERTopic were fit on all 5,292 comments. Manual topic labels were not a training target. The cited run is `20261019_topic_models_function_words`. It removes 56 grammatical tokens listed in `config/somali_function_words.csv`. Each removed token appears in at least 30 comments. Content words such as `lacag`, `nira`, `kaarka`, `dadka`, and `madaxweyne` remain. An earlier run without that list, `20261019_topic_models`, selected NMF k=6 with coherence 0.058, and its top terms were mostly function words. That run is kept for comparison and is not the cited topic solution.
+The cited topic run is `20261111_3500`. It compares LDA, NMF, LSA, and clustering models that use AfriBERTa and AfroXLMR. All of them were fit on the 5,292 comments. Manual topic labels were not a training target. The comparison removes 56 grammatical tokens listed in `config/somali_function_words.csv`. The selected model is the coverage-eligible candidate with the highest c_npmi. Coverage-eligible means a topic was assigned to at least 80 percent of the 5,292 comments. Somali-trained encoders were in that pool and were not selected, because their coherence was lower.
 
-BERTopic uses `paraphrase-multilingual-MiniLM-L12-v2`. That choice does not establish that the embedding model understands Somali.
+Selected model: NMF (k=4). Coherence c_npmi: 0.084. Diversity: 0.950. Coverage: 0.985. Unassigned comments: 81. The cited model is a bag-of-words model, not a Somali-trained encoder.
 
-The selected model is the coverage-eligible candidate with the highest c_npmi. Coverage-eligible means a topic was assigned to at least 80 percent of the 5,292 comments.
-
-Selected model: LDA (k=6). Coherence c_npmi: 0.023. Diversity: 0.783. Coverage: 0.959. Unassigned comments: 216.
-
-| family | setting | n_topics | coherence_c_npmi | topic_diversity | coverage |
-| --- | --- | --- | --- | --- | --- |
-| NMF | k=6 | 6 | 0.012 | 0.967 | 0.959 |
-| LDA | k=6 | 6 | 0.023 | 0.783 | 0.959 |
-| NMF | k=8 | 8 | -0.029 | 0.925 | 0.959 |
-| LDA | k=8 | 8 | 0.005 | 0.800 | 0.959 |
-| NMF | k=10 | 10 | -0.013 | 0.890 | 0.959 |
-| LDA | k=10 | 10 | -0.028 | 0.820 | 0.959 |
-| NMF | k=12 | 12 | -0.030 | 0.850 | 0.959 |
-| LDA | k=12 | 12 | -0.043 | 0.775 | 0.959 |
-| NMF | k=15 | 15 | -0.065 | 0.840 | 0.959 |
-| LDA | k=15 | 15 | -0.047 | 0.767 | 0.959 |
-| BERTopic | min_cluster_size=30; function words removed | 34 | -0.305 | 0.765 | 0.491 |
-
-The labels below are the model's own top terms. They are not validated names of policy themes.
+The previous cited run, `20261019_topic_models_function_words`, selected LDA k=6 with coherence 0.023. That run stays saved and is not the cited solution.
 
 | topic_id | n_comments | provisional_term_label |
 | --- | --- | --- |
-| 4 | 940 | lacag \| degmada \| kaarka |
-| 2 | 920 | dadka \| shacabka \| lacag |
-| 0 | 855 | nira \| somalia \| kaarka |
-| 1 | 807 | dadka \| maqan \| war |
-| 3 | 777 | mudane \| madaxweyne \| allah |
-| 5 | 777 | nira \| id \| card |
+| 2 | 3824 | nira \| dadka \| somalia |
+| 1 | 616 | lacag \| hadaba \| meel |
+| 3 | 387 | allah \| masha \| guul |
+| 0 | 384 | madaxweyne \| mudane \| guuleyso |
 
-Top terms are Somali word forms from a statistical model after the project function-word list was removed. Coherence does not confirm that a topic is a public-policy theme. The embedding model is multilingual and is not evidence of Somali understanding.
+The labels above are the model's own top terms. They are not validated names of policy themes. Coherence does not confirm that a topic is a public-policy theme.
 
 ## Supervised classification
 

@@ -57,13 +57,20 @@ def classification_rows(report):
     return pd.DataFrame(rows)
 
 
+def _text_match(path):
+    frame = pd.read_csv(path)
+    if "text_match_status" not in frame.columns and "match" in frame.columns:
+        frame = frame.rename(columns={"match": "text_match_status", "n": "n_comments"})
+    return frame
+
+
 def load():
     eda = json.loads((ROOT / "outputs/02_eda/20261111_3500/eda_findings.json").read_text(encoding="utf-8"))
     posts = pd.read_csv(ROOT / "outputs/02_eda/20261111_3500/eda_post_summary.csv")
     timeline = pd.read_csv(ROOT / "outputs/07_events_timeline/20261019_events/post_timeline.csv")
     periods = pd.read_csv(ROOT / "outputs/07_events_timeline/20261019_events/posts_by_event_period.csv")
     topic_selection = json.loads(
-        (ROOT / "outputs/04_topic_modeling/20261019_topic_models_function_words/topic_model_selection.json").read_text(encoding="utf-8")
+        (ROOT / "outputs/04_topic_modeling/20261111_3500/topic_model_selection.json").read_text(encoding="utf-8")
     )
     selected = json.loads(
         (ROOT / "outputs/05_model_development/20261111_3500/selected_models.json").read_text(encoding="utf-8")
@@ -81,11 +88,11 @@ def load():
     sample = sample.copy()
     sample["excerpt"] = sample["excerpt"].map(redact)
     examples = pd.read_csv(
-        ROOT / "outputs/04_topic_modeling/20261019_topic_models_function_words/selected_topic_examples.csv"
+        ROOT / "outputs/04_topic_modeling/20261111_3500/selected_topic_examples.csv"
     )
     examples["excerpt"] = examples["excerpt"].map(redact)
     assignments = pd.read_csv(
-        ROOT / "outputs/04_topic_modeling/20261019_topic_models_function_words/topic_assignments.csv",
+        ROOT / "outputs/04_topic_modeling/20261111_3500/topic_assignments.csv",
         usecols=["topic_id", "assignment_status"],
     )
     predictions = pd.read_csv(
@@ -105,6 +112,14 @@ def load():
     )
     relation = json.loads(
         (ROOT / "outputs/03_annotation/20261111_3500/annotation_relation.json").read_text(encoding="utf-8")
+    )
+    relation.setdefault("unmatched_annotation_keys", relation.get("keys_unmatched", 0))
+    relation.setdefault("codebook_file_present", False)
+    relation.setdefault("inter_annotator_agreement_available", False)
+    relation.setdefault(
+        "decision",
+        "All 3,500 labeled keys match a raw comment. 1,199 rows have an annotation id. "
+        "2,301 labeled rows do not. No codebook file and no second coder are stored.",
     )
     source_check = json.loads(
         (ROOT / "outputs/07_events_timeline/20261019_source_check/source_check.json").read_text(encoding="utf-8")
@@ -127,10 +142,10 @@ def load():
         "lengths": pd.read_csv(ROOT / "outputs/02_eda/20261018_eda/eda_length_summary.csv"),
         "topic_selection": topic_selection,
         "prior_topic_selection": json.loads(
-            (ROOT / "outputs/04_topic_modeling/20261019_topic_models/topic_model_selection.json").read_text(encoding="utf-8")
+            (ROOT / "outputs/04_topic_modeling/20261019_topic_models_function_words/topic_model_selection.json").read_text(encoding="utf-8")
         ),
-        "topic_comparison": pd.read_csv(ROOT / "outputs/04_topic_modeling/20261019_topic_models_function_words/topic_model_comparison.csv"),
-        "topic_terms": pd.read_csv(ROOT / "outputs/04_topic_modeling/20261019_topic_models_function_words/selected_topic_terms.csv"),
+        "topic_comparison": pd.read_csv(ROOT / "outputs/04_topic_modeling/20261111_3500/topic_model_comparison.csv"),
+        "topic_terms": pd.read_csv(ROOT / "outputs/04_topic_modeling/20261111_3500/selected_topic_terms.csv"),
         "examples": examples,
         "selected": selected,
         "winners": winners,
@@ -162,7 +177,7 @@ def load():
         "named_posts": timeline.loc[timeline["comparison_response_ids"].fillna("").str.len() > 0],
         "quality": quality,
         "relation": relation,
-        "text_match": pd.read_csv(ROOT / "outputs/03_annotation/20261111_3500/annotation_text_match_counts.csv"),
+        "text_match": _text_match(ROOT / "outputs/03_annotation/20261111_3500/annotation_text_match_counts.csv"),
         "corrections": pd.read_csv(ROOT / "outputs/03_annotation/20261111_3500/annotation_corrections.csv"),
         "balance": pd.read_csv(ROOT / "outputs/03_annotation/20261111_3500/annotation_class_balance.csv"),
         "figure": ROOT / "outputs/07_events_timeline/20261019_events/figures/feedback_loop_sequence.png",

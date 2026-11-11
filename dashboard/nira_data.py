@@ -118,8 +118,8 @@ def load():
     relation.setdefault("inter_annotator_agreement_available", False)
     relation.setdefault(
         "decision",
-        "All 3,500 labeled keys match a raw comment. 1,199 rows have an annotation id. "
-        "2,301 labeled rows do not. No codebook file and no second coder are stored.",
+        "All 3,500 annotated keys match a raw comment. Every row has an annotation id. "
+        "No codebook file and no second coder are stored.",
     )
     source_check = json.loads(
         (ROOT / "outputs/07_events_timeline/20261019_source_check/source_check.json").read_text(encoding="utf-8")

@@ -15,7 +15,7 @@ PALETTE = ["#0b4f86", "#1d6fb8", "#3d97d4", "#7ec8f8", "#9fd4f5", "#d5ebf8"]
 
 
 @st.cache_data(show_spinner=False)
-def data(result_run="20261111_topics"):
+def data(result_run="20261111_3500_ids"):
     importlib.reload(nira_data)
     bundle = nira_data.load()
     eda = bundle["eda"]
@@ -313,7 +313,7 @@ def overview():
         "home",
     )
     guide([
-        ("database", f"The labeled file has {eda['annotated_comments']:,} comments. {eda['rows_with_annotation_id']:,} rows have an annotation id. {eda['rows_without_annotation_id']:,} labeled rows do not."),
+        ("database", f"The annotated file has {eda['annotated_comments']:,} comments. Every row has an annotation id."),
         ("category", f"The cited topic model is {selection['selected_family']} {selection['selected_setting']}. The earlier cited model was LDA k=6."),
         ("sync", "A shared topic or a nearby date is a comparison. It is not evidence that one item caused the next."),
     ])
@@ -819,7 +819,7 @@ def quality():
             f"on {correction['corrected_on']}. {correction['reason']} The original workbook was not changed, and the models were not retrained."
         )
     else:
-        st.caption("The 3,500 file has no correction-register row. The original 1,199 workbook was not changed.")
+        st.caption("The annotated file has 3,500 rows. Every row has an annotation id. The file has no correction-register row.")
     section("model_training", "Coverage of saved model outputs")
     left, right = st.columns(2)
     left.plotly_chart(

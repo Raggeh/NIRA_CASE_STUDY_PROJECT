@@ -2,7 +2,7 @@
 
 ## Question and data
 
-The study asks how public Facebook comments on posts about Somalia's National Identification and Registration Authority can be described, classified, and placed next to inventoried institutional communications. The working corpus contains 5292 comments under 19 source posts. The annotated file contains 3500 comments, which is 66.1% of the corpus. Every annotated key matches a raw comment. 1199 of those rows have an annotation id. 2301 labeled rows do not.
+The study asks how public Facebook comments on posts about Somalia's National Identification and Registration Authority can be described, classified, and placed next to inventoried institutional communications. The working corpus contains 5292 comments under 19 source posts. The annotated file contains 3500 comments, which is 66.1% of the corpus. Every annotated key matches a raw comment, and every row has an annotation id.
 
 `collection_date` is the time the comment file was collected. `publication_date_register` is the researcher-verified publication date of the source post. The two dates are not substitutes.
 
@@ -103,7 +103,7 @@ The figures are saved from the tables above in `outputs/08_results_visualization
 
 ## Limits
 
-- The labeled file has 3,500 rows joined to the raw corpus. 1,199 rows have an annotation id. 2,301 labeled rows do not.
+- The annotated file has 3,500 rows joined to the raw corpus. Every row has an annotation id.
 - The four supervised tasks were retrained on those 3,500 rows. Seed 42. Selection used validation macro-F1 only.
 - Comments are short, mostly Somali, and written in informal Latin script. A few comments use Arabic script. Coherence and embedding distance are statistical descriptions, not a language-understanding test.
 - The largest classes are `relevant`, `complaint`, `other`, and `negative`. Macro-F1 gives equal weight to rare classes, including classes with few test rows.
@@ -114,13 +114,13 @@ The figures are saved from the tables above in `outputs/08_results_visualization
 ## Files
 
 - Data preparation: `outputs/01_data_preparation/20261018_content_review/`
-- Exploratory analysis: `outputs/02_eda/20261018_eda/`
-- Annotation audit: `outputs/03_annotation/20261018_annotation/`
-- Topic models: `outputs/04_topic_modeling/20261019_topic_models_function_words/`
-- Earlier topic run, kept for comparison: `outputs/04_topic_modeling/20261019_topic_models/`
-- Supervised comparison: `outputs/05_model_development/20261019_supervised/`
-- Predictions: `outputs/06_results_predictions/20261019_predictions/`
-- Events and the pre-event, event-day, and post-event split: `outputs/07_events_timeline/20261019_events/`
+- Exploratory analysis: `outputs/02_eda/20261111_3500/`
+- Annotation audit: `outputs/03_annotation/20261111_3500/`
+- Topic models: `outputs/04_topic_modeling/20261111_3500/`
+- Earlier topic run, kept for comparison: `outputs/04_topic_modeling/20261019_topic_models_function_words/`
+- Supervised comparison: `outputs/05_model_development/20261111_3500/`
+- Predictions: `outputs/06_results_predictions/20261111_3500/`
+- Events and the pre-event, event-day, and post-event split: `outputs/07_events_timeline/20261111_3500/`
 - Page check: `outputs/07_events_timeline/20261019_source_check/`
 - Figures: `outputs/08_results_visualization/20261019_figures/`
 

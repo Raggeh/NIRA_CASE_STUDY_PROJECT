@@ -1,0 +1,21 @@
+{
+  "annotated_rows": 3500,
+  "raw_rows": 5292,
+  "annotated_share_of_raw_comments": 0.6613756613756614,
+  "keys_matched": 3500,
+  "keys_unmatched": 0,
+  "rows_with_annotation_id": 3500,
+  "rows_without_annotation_id": 0,
+  "codebook_file_present": false,
+  "inter_annotator_agreement_available": true,
+  "unmatched_annotation_keys": 0,
+  "annotator_1": "Raggeh",
+  "annotator_2": "Sodal",
+  "cohens_kappa": {
+    "policy_relevance": 0.962,
+    "feedback_type": 0.944,
+    "topic": 0.98,
+    "sentiment": 0.989
+  },
+  "decision": "Training labels are the final column in NIRA_Project_Final_Annotation.xlsx. Raggeh and Sodal coded the four tasks. Cohen kappa is 0.962, 0.944, 0.980 and 0.989. Where they agreed, the final is that label. Where they differed, the final is the one of those two labels the comment supports. No codebook file is stored."
+}

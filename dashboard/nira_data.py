@@ -65,17 +65,17 @@ def _text_match(path):
 
 
 def load():
-    eda = json.loads((ROOT / "outputs/02_eda/20261111_3500/eda_findings.json").read_text(encoding="utf-8"))
-    posts = pd.read_csv(ROOT / "outputs/02_eda/20261111_3500/eda_post_summary.csv")
+    eda = json.loads((ROOT / "outputs/02_eda/20261125_final/eda_findings.json").read_text(encoding="utf-8"))
+    posts = pd.read_csv(ROOT / "outputs/02_eda/20261125_final/eda_post_summary.csv")
     timeline = pd.read_csv(ROOT / "outputs/07_events_timeline/20261019_events/post_timeline.csv")
     periods = pd.read_csv(ROOT / "outputs/07_events_timeline/20261019_events/posts_by_event_period.csv")
     topic_selection = json.loads(
-        (ROOT / "outputs/04_topic_modeling/20261111_3500/topic_model_selection.json").read_text(encoding="utf-8")
+        (ROOT / "outputs/04_topic_modeling/20261125_final/topic_model_selection.json").read_text(encoding="utf-8")
     )
     selected = json.loads(
-        (ROOT / "outputs/05_model_development/20261111_3500/selected_models.json").read_text(encoding="utf-8")
+        (ROOT / "outputs/05_model_development/20261125_final/selected_models.json").read_text(encoding="utf-8")
     )
-    sample = pd.read_csv(ROOT / "outputs/06_results_predictions/20261111_3500/comment_comparison_sample.csv")
+    sample = pd.read_csv(ROOT / "outputs/06_results_predictions/20261125_final/comment_comparison_sample.csv")
     if len(sample) != 30 or sample["record_key"].nunique() != 30:
         raise ValueError(f"Expected 30 unique comparison comments, found {len(sample)}")
 
@@ -88,15 +88,15 @@ def load():
     sample = sample.copy()
     sample["excerpt"] = sample["excerpt"].map(redact)
     examples = pd.read_csv(
-        ROOT / "outputs/04_topic_modeling/20261111_3500/selected_topic_examples.csv"
+        ROOT / "outputs/04_topic_modeling/20261125_final/selected_topic_examples.csv"
     )
     examples["excerpt"] = examples["excerpt"].map(redact)
     assignments = pd.read_csv(
-        ROOT / "outputs/04_topic_modeling/20261111_3500/topic_assignments.csv",
+        ROOT / "outputs/04_topic_modeling/20261125_final/topic_assignments.csv",
         usecols=["topic_id", "assignment_status"],
     )
     predictions = pd.read_csv(
-        ROOT / "outputs/06_results_predictions/20261111_3500/corpus_predictions.csv",
+        ROOT / "outputs/06_results_predictions/20261125_final/corpus_predictions.csv",
         usecols=["record_key", "is_annotated"],
     )
     predictions["is_annotated"] = predictions["is_annotated"].map(lambda value: str(value).lower() in {"true", "1", "yes"})
@@ -105,13 +105,13 @@ def load():
     if len(assignments) != 5292:
         raise ValueError(f"Expected 5,292 topic assignments, found {len(assignments)}")
     reports = json.loads(
-        (ROOT / "outputs/05_model_development/20261111_3500/heldout_classification_reports.json").read_text(encoding="utf-8")
+        (ROOT / "outputs/05_model_development/20261125_final/heldout_classification_reports.json").read_text(encoding="utf-8")
     )
     quality = json.loads(
         (ROOT / "outputs/01_data_preparation/20261018_content_review/raw_quality_summary.json").read_text(encoding="utf-8")
     )
     relation = json.loads(
-        (ROOT / "outputs/03_annotation/20261111_3500/annotation_relation.json").read_text(encoding="utf-8")
+        (ROOT / "outputs/03_annotation/20261125_final/annotation_relation.json").read_text(encoding="utf-8")
     )
     relation.setdefault("unmatched_annotation_keys", relation.get("keys_unmatched", 0))
     relation.setdefault("codebook_file_present", False)
@@ -127,7 +127,7 @@ def load():
     winners = {task: body["model"] for task, body in selected["tasks"].items()}
     matrices = {
         task: pd.read_csv(
-            ROOT / f"outputs/05_model_development/20261111_3500/test_confusion_{task}.csv",
+            ROOT / f"outputs/05_model_development/20261125_final/test_confusion_{task}.csv",
             index_col=0,
         )
         for task in TASK_NAMES
@@ -144,8 +144,8 @@ def load():
         "prior_topic_selection": json.loads(
             (ROOT / "outputs/04_topic_modeling/20261019_topic_models_function_words/topic_model_selection.json").read_text(encoding="utf-8")
         ),
-        "topic_comparison": pd.read_csv(ROOT / "outputs/04_topic_modeling/20261111_3500/topic_model_comparison.csv"),
-        "topic_terms": pd.read_csv(ROOT / "outputs/04_topic_modeling/20261111_3500/selected_topic_terms.csv"),
+        "topic_comparison": pd.read_csv(ROOT / "outputs/04_topic_modeling/20261125_final/topic_model_comparison.csv"),
+        "topic_terms": pd.read_csv(ROOT / "outputs/04_topic_modeling/20261125_final/selected_topic_terms.csv"),
         "examples": examples,
         "selected": selected,
         "winners": winners,
@@ -153,32 +153,32 @@ def load():
             "model_name": selected["embedding_model"],
             "limitation": selected["language_limitation"],
         },
-        "validation": pd.read_csv(ROOT / "outputs/05_model_development/20261111_3500/validation_scores.csv"),
-        "heldout": pd.read_csv(ROOT / "outputs/05_model_development/20261111_3500/heldout_test_scores.csv"),
-        "splits": pd.read_csv(ROOT / "outputs/05_model_development/20261111_3500/split_sizes.csv"),
+        "validation": pd.read_csv(ROOT / "outputs/05_model_development/20261125_final/validation_scores.csv"),
+        "heldout": pd.read_csv(ROOT / "outputs/05_model_development/20261125_final/heldout_test_scores.csv"),
+        "splits": pd.read_csv(ROOT / "outputs/05_model_development/20261125_final/split_sizes.csv"),
         "class_metrics": classification_rows(reports),
         "matrices": matrices,
-        "refit": pd.read_csv(ROOT / "outputs/06_results_predictions/20261111_3500/refit_agreement.csv"),
-        "pseudo": pd.read_csv(ROOT / "outputs/06_results_predictions/20261111_3500/comparison.csv"),
-        "distribution": pd.read_csv(ROOT / "outputs/06_results_predictions/20261111_3500/label_distribution_comparison.csv"),
+        "refit": pd.read_csv(ROOT / "outputs/06_results_predictions/20261125_final/refit_agreement.csv"),
+        "pseudo": pd.read_csv(ROOT / "outputs/06_results_predictions/20261125_final/comparison.csv"),
+        "distribution": pd.read_csv(ROOT / "outputs/06_results_predictions/20261125_final/label_distribution_comparison.csv"),
         "sample": sample,
-        "overlap": json.loads((ROOT / "outputs/06_results_predictions/20261111_3500/sample_overlap.json").read_text(encoding="utf-8")),
+        "overlap": json.loads((ROOT / "outputs/06_results_predictions/20261125_final/sample_overlap.json").read_text(encoding="utf-8")),
         "n_predictions": int(len(predictions)),
         "n_predicted_annotated": int(predictions["is_annotated"].sum()),
         "assignment_counts": assignment_counts,
         "linkage": pd.read_csv(ROOT / "outputs/07_events_timeline/20261019_events/linkage_class_counts.csv"),
         "period_definition": json.loads(
-            (ROOT / "outputs/07_events_timeline/20261111_3500/event_period_definition.json").read_text(encoding="utf-8")
+            (ROOT / "outputs/07_events_timeline/20261125_final/event_period_definition.json").read_text(encoding="utf-8")
         ),
-        "period_summary": pd.read_csv(ROOT / "outputs/07_events_timeline/20261111_3500/event_period_summary.csv"),
-        "period_shares": pd.read_csv(ROOT / "outputs/07_events_timeline/20261111_3500/predicted_label_shares_by_event_period.csv"),
+        "period_summary": pd.read_csv(ROOT / "outputs/07_events_timeline/20261125_final/event_period_summary.csv"),
+        "period_shares": pd.read_csv(ROOT / "outputs/07_events_timeline/20261125_final/predicted_label_shares_by_event_period.csv"),
         "responses": pd.read_csv(ROOT / "outputs/07_events_timeline/20261019_events/response_inventory_timeline.csv"),
         "source_posts": pd.DataFrame(source_check["posts"]),
         "named_posts": timeline.loc[timeline["comparison_response_ids"].fillna("").str.len() > 0],
         "quality": quality,
         "relation": relation,
-        "text_match": _text_match(ROOT / "outputs/03_annotation/20261111_3500/annotation_text_match_counts.csv"),
-        "corrections": pd.read_csv(ROOT / "outputs/03_annotation/20261111_3500/annotation_corrections.csv"),
-        "balance": pd.read_csv(ROOT / "outputs/03_annotation/20261111_3500/annotation_class_balance.csv"),
+        "text_match": _text_match(ROOT / "outputs/03_annotation/20261125_final/annotation_text_match_counts.csv"),
+        "corrections": pd.read_csv(ROOT / "outputs/03_annotation/20261125_final/annotation_corrections.csv"),
+        "balance": pd.read_csv(ROOT / "outputs/03_annotation/20261125_final/annotation_class_balance.csv"),
         "figure": ROOT / "outputs/07_events_timeline/20261019_events/figures/feedback_loop_sequence.png",
     }

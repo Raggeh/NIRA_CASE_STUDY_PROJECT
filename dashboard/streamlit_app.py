@@ -15,7 +15,7 @@ PALETTE = ["#0b4f86", "#1d6fb8", "#3d97d4", "#7ec8f8", "#9fd4f5", "#d5ebf8"]
 
 
 @st.cache_data(show_spinner=False)
-def data(result_run="20261111_3500_ids"):
+def data(result_run="20261125_final"):
     importlib.reload(nira_data)
     bundle = nira_data.load()
     eda = bundle["eda"]
@@ -371,7 +371,8 @@ def overview():
     figure.update_xaxes(showgrid=False, automargin=True)
     figure.update_yaxes(gridcolor="rgba(29,111,184,0.15)", automargin=True)
     st.plotly_chart(figure, width="stretch")
-    section("account_tree", "Model used for each supervised task")
+    section("account_tree", "Model trained on all 3,500 labels")
+    st.caption("Each selected model is trained again on all 3,500 labeled comments and applied to all 5,292 comments. Validation only chooses the model. Test macro-F1 is a separate fit that left 700 labeled comments out. The 1,792 comments without a human label are predicted, not used as training labels.")
     cards = st.columns(4)
     for column, (task, model) in zip(cards, bundle["winners"].items()):
         body = bundle["selected"]["tasks"][task]
@@ -538,8 +539,8 @@ def classification():
     winners = bundle["winners"]
     hero(
         "CLASSIFICATION",
-        "Four tasks, selected on validation macro-F1",
-        f"The test split was scored after the model was chosen. Labels on all 5,292 comments come from a refit on the {int(bundle['eda']['annotated_comments']):,} labeled rows.",
+        "Trained on all 3,500 labels",
+        f"The model for each task is trained on all {int(bundle['eda']['annotated_comments']):,} labeled comments and applied to all 5,292 comments. Test macro-F1 comes from a separate fit that left 700 labeled comments out. The other comments have a prediction and no human label, so they are not training labels.",
         "account_tree",
     )
     guide([
@@ -547,7 +548,7 @@ def classification():
         ("bar_chart", "Validation scores for the five compared models."),
         ("grid_on", "Held-out precision, recall, F1, and the test confusion matrix."),
     ])
-    section("compare_arrows", "Agreement with the human labels")
+    section("compare_arrows", "All 3,500 labels in training, then all 5,292 comments")
     labeled = int(bundle["eda"]["annotated_comments"])
     unlabeled = int(bundle["eda"]["raw_comments"]) - labeled
     st.warning(f"These matches are on the {labeled:,} labeled rows. The model was refit on those labels first, so this agreement is not the test score. The other {unlabeled:,} comments have a prediction and no row in the annotated file.")

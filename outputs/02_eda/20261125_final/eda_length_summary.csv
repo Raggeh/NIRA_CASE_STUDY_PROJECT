@@ -1,0 +1,2 @@
+group,n_comments,min_chars,median_chars,mean_chars,max_chars,under_30_chars,over_280_chars,with_newline,arabic_script,styled_latin,phone_like
+raw_corpus,5292,15,55.0,79.31198034769463,1430,1024,142,335,7,5,11

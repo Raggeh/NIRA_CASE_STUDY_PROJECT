@@ -314,7 +314,7 @@ def overview():
     )
     guide([
         ("database", f"The annotated file has {eda['annotated_comments']:,} comments. Every row has an annotation id."),
-        ("category", f"The cited topic model is {selection['selected_family']} {selection['selected_setting']}. The earlier cited model was LDA k=6."),
+        ("category", f"The cited topic model is {selection['selected_family']} {selection['selected_setting']}. LDA k=6 was compared and was not selected."),
         ("sync", "A shared topic or a nearby date is a comparison. It is not evidence that one item caused the next."),
     ])
     kpis([
@@ -847,7 +847,7 @@ def quality():
         "Embedding scores do not show that the multilingual model understands Somali."
     )
     section("balance", f"Label balance inside the {int(bundle['eda']['annotated_comments']):,}")
-    st.caption("Each row is one annotated field. The largest class is the most common manual label in that field. Actor was annotated and was not one of the four modelled tasks.")
+    st.caption("Each row is one annotated field. The largest class is the most common manual label in that field. The final workbook has no actor column. The first annotator coded actor alone, and it is not one of the four trained tasks.")
     balance = bundle["balance"]
     st.dataframe(balance, width="stretch", hide_index=True)
     st.plotly_chart(

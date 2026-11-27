@@ -10,10 +10,10 @@
   "comments_in_corpus": 5292,
   "function_words_removed": 56,
   "function_word_file": "config/somali_function_words.csv",
-  "prior_run": "20261019_topic_models_function_words",
+  "prior_run": "not retained",
   "selection_rule": "Highest c_npmi among models that assign a topic to at least 80 percent of the 5,292 comments. Somali-trained encoders are in that pool and are selected when their coherence is higher. Manual labels were not a training target.",
   "manual_labels_used_as_training_target": false,
   "somali_trained_encoder": false,
-  "run_id": "20261111_3500",
+  "run_id": "20261125_final",
   "language_limitation": "The cited model is NMF on bag-of-words counts after the project function-word list was removed. AfriBERTa and AfroXLMR were in the comparison and had lower c_npmi, so they were not selected. Coherence does not confirm a public-policy theme. A Somali-trained encoder in the comparison is not evidence that the cited model understands Somali."
 }

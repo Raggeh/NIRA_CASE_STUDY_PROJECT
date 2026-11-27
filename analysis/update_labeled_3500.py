@@ -1,7 +1,7 @@
 """Recompute annotation-dependent results using the 3,500-row labeled file.
 
-The raw CSV and the original 1,199 workbook are only read. Topic-model files
-stay in place because they were fit on the 5,292 comment texts.
+The raw CSV is only read. Labels come from NIRA_Project_Final_Annotation.xlsx.
+Topic-model files stay in place because they were fit on the 5,292 comment texts.
 """
 
 import json
@@ -13,6 +13,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
+from load_final_annotation import load_final_annotation
 from supervised import (
     CLASSICAL_MODEL_NAMES,
     EMBEDDING_MODEL_NAME,
@@ -22,16 +23,15 @@ from supervised import (
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "NIRA_Facebook_Datasets_5292.csv"
-ANN = ROOT / "Annotation Dataset" / "NIRA_Annotated_Master_3500.csv"
-WORKING = ROOT / "outputs/01_data_preparation/20261018_content_review/raw_corpus_working.csv"
-EMB = ROOT / "outputs/04_topic_modeling/20261019_topic_models/comment_embeddings.npy"
-TOPICS = ROOT / "outputs/04_topic_modeling/20261019_topic_models_function_words/topic_assignments.csv"
-EDA_POSTS = ROOT / "outputs/02_eda/20261018_eda/eda_post_summary.csv"
-EDA_JSON = ROOT / "outputs/02_eda/20261018_eda/eda_findings.json"
-PERIOD_POSTS = ROOT / "outputs/07_events_timeline/20261019_events/posts_by_event_period.csv"
+WORKING = ROOT / "outputs/01_data_preparation/20261125_final/raw_corpus_working.csv"
+EMB = ROOT / "outputs/04_topic_modeling/20261125_final/comment_embeddings.npy"
+TOPICS = ROOT / "outputs/04_topic_modeling/20261125_final/topic_assignments.csv"
+EDA_POSTS = ROOT / "outputs/02_eda/20261125_final/eda_post_summary.csv"
+EDA_JSON = ROOT / "outputs/02_eda/20261125_final/eda_findings.json"
+PERIOD_POSTS = ROOT / "outputs/07_events_timeline/20261125_final/posts_by_event_period.csv"
 SEED = 42
 TASKS = ["policy_relevance", "feedback_type", "topic", "sentiment"]
-RUN = "20261111_3500"
+RUN = "20261125_final"
 
 
 def record_key(frame, url_column="post_url"):
@@ -67,7 +67,7 @@ def fit_task(model_name, x_train, y_train, x_score, emb_train, emb_score):
 
 def main():
     raw = pd.read_csv(RAW, dtype=str, keep_default_na=False)
-    ann = pd.read_csv(ANN, dtype=str, keep_default_na=False)
+    ann = load_final_annotation()
     working = pd.read_csv(WORKING, dtype=str, keep_default_na=False)
     raw["join_key"] = record_key(raw)
     raw["record_key"] = stored_key(raw)
@@ -322,7 +322,7 @@ def main():
         {"match": "content_difference", "n": len(ann) - ws},
     ]).to_csv(ann_out / "annotation_text_match_counts.csv", index=False)
     balance = []
-    for field in TASKS + ["actor"]:
+    for field in TASKS:
         counts = ann[field].astype(str).value_counts()
         balance.append({
             "field": field,

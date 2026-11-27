@@ -4,19 +4,15 @@ The application is `dashboard/streamlit_app.py`. It reads saved outputs through 
 
 `NIRA_Research_Dashboard_Cleaned_FIXED.py` is not in this project. The Google Colab notebook `NIRA_Google_Colab.ipynb` already launches `dashboard/streamlit_app.py`.
 
-Backup of the previous application:
-
-- `dashboard/backup/streamlit_app_before_redesign.py`
-- `dashboard/backup/nira_data_before_redesign.py`
-
 ## Data sources
 
 | Artifact | Path | Page | What it supplies | Rows / status |
 | --- | --- | --- | --- | --- |
 | EDA findings | `outputs/02_eda/20261125_final/eda_findings.json` | Overview, Exploration | 5,292 comments, 3,500 annotated, 19 posts, collection days, publication years | Loaded |
-| Post summary | `outputs/02_eda/20261018_eda/eda_post_summary.csv` | Exploration, Feedback | Per-post counts and publication dates | 19 posts |
-| Length summary | `outputs/02_eda/20261018_eda/eda_length_summary.csv` | Exploration, Quality | Median length, short comments, phone-like count | Raw and annotated groups |
-| Raw quality | `outputs/01_data_preparation/20261018_content_review/raw_quality_summary.json` | Exploration, Quality | Missing cells, duplicates, platform, date rule | 5,292 rows, 0 blank, 0 exact duplicates |
+| Post summary | `outputs/02_eda/20261125_final/eda_post_summary.csv` | Exploration, Feedback | Per-post counts and publication dates | 19 posts |
+| Length summary | `outputs/02_eda/20261125_final/eda_length_summary.csv` | Exploration, Quality | Median length, short comments, phone-like count | Raw corpus, 5,292 comments |
+| Annotation link | `outputs/01_data_preparation/20261125_final/annotation_linked.csv` | Quality | 3,500 final labels joined to the working corpus | From `NIRA_Project_Final_Annotation.xlsx` |
+| Raw quality | `outputs/01_data_preparation/20261125_final/raw_quality_summary.json` | Exploration, Quality | Missing cells, duplicates, platform, date rule | 5,292 rows, 0 blank, 0 exact duplicates |
 | Annotation relation | `outputs/03_annotation/20261125_final/annotation_relation.json` | Quality | Final labels from NIRA_Project_Final_Annotation.xlsx | 3,500 keys matched |
 | Text match | `outputs/03_annotation/20261125_final/annotation_text_match_counts.csv` | Quality | Exact, spacing, and content differences | 3,475 exact, 12 spacing, 13 content |
 | Correction register | `outputs/03_annotation/20261125_final/annotation_corrections.csv` | Quality | No correction-register row | Every annotated row has an annotation id |
@@ -26,8 +22,7 @@ Backup of the previous application:
 | Topic terms | `outputs/04_topic_modeling/20261125_final/selected_topic_terms.csv` | Overview, Topics | Four term lists and sizes | Loaded |
 | Topic examples | `outputs/04_topic_modeling/20261125_final/selected_topic_examples.csv` | Topics | Representative excerpts | Phone-like text redacted |
 | Topic assignments | `outputs/04_topic_modeling/20261125_final/topic_assignments.csv` | Quality | Assigned 5,211, unassigned 81 | 5,292 rows |
-| Prior topic run | `outputs/04_topic_modeling/20261019_topic_models/topic_model_selection.json` | Topics | Earlier NMF k=6 | Kept, not cited |
-| Embedding note | `outputs/04_topic_modeling/20261019_topic_models/embedding_model.json` | Overview, Classification | MiniLM model name and limit | Not an XLM-RoBERTa result |
+| Embedding note | `outputs/04_topic_modeling/20261125_final/embedding_model.json` | Overview, Classification | MiniLM model name and limit | Not an XLM-RoBERTa result |
 | Selected models | `outputs/05_model_development/20261125_final/selected_models.json` | Overview, Classification, Quality | Winners, seed 42 | Test not used for selection |
 | Validation scores | `outputs/05_model_development/20261125_final/validation_scores.csv` | Classification | Five models, four tasks | Loaded |
 | Held-out scores | `outputs/05_model_development/20261125_final/heldout_test_scores.csv` | Classification | Test macro-F1 and accuracy | Loaded |
@@ -38,11 +33,11 @@ Backup of the previous application:
 | Label distribution | `outputs/06_results_predictions/20261125_final/label_distribution_comparison.csv` | Overview, Classification | Annotated versus predicted counts | Loaded |
 | Refit agreement | `outputs/06_results_predictions/20261125_final/refit_agreement.csv` | Classification | Not a test score | Loaded |
 | Comparison sample | `outputs/06_results_predictions/20261125_final/comment_comparison_sample.csv` | Exploration, Classification | 30 excerpts | No group overlap |
-| Post timeline | `outputs/07_events_timeline/20261019_events/post_timeline.csv` | Exploration, Feedback | Linkage and evidence status | 19 posts |
+| Post timeline | `outputs/07_events_timeline/20261125_final/post_timeline.csv` | Exploration, Feedback | Linkage and evidence status | 19 posts |
 | Period tables | `outputs/07_events_timeline/20261125_final/event_period_summary.csv` and `predicted_label_shares_by_event_period.csv` | Feedback | Pre, event day, post | 2,141 / 140 / 1,219 annotated |
-| Response inventory | `outputs/07_events_timeline/20261019_events/response_inventory_timeline.csv` | Feedback | RESP_001 to RESP_005 | Loaded |
-| Source check | `outputs/07_events_timeline/20261019_source_check/source_check.json` | Feedback | POST_17 and POST_18 screenshot captions | Audio not transcribed |
-| Feedback figure | `outputs/07_events_timeline/20261019_events/figures/feedback_loop_sequence.png` | Feedback | Sequence figure | Loaded |
+| Response inventory | `outputs/07_events_timeline/20261125_final/response_inventory_timeline.csv` | Feedback | RESP_001 to RESP_005 | Loaded |
+| Source check | `outputs/07_events_timeline/20261125_final/source_check.json` | Feedback | POST_17 and POST_18 screenshot captions | Audio not transcribed |
+| Feedback figure | `outputs/07_events_timeline/20261125_final/figures/feedback_loop_sequence.png` | Feedback | Sequence figure | Loaded |
 
 ## Changes
 
@@ -50,7 +45,7 @@ Backup of the previous application:
 - Sidebar brand, theme switch, six icon links, and the author block stay in one column. The nav can scroll.
 - Added charts for collection day, publication year, topic size, sentiment, model coherence, validation scores, confusion, period counts, and predicted shares.
 - Added filters for posts, topic family, classification task, comment group, and event period.
-- Added the quality checks, ANN_0031 register, seed, and the statement that a repeated `comment_id` is not a duplicate row.
+- Added the quality checks, seed, and the statement that a repeated `comment_id` is not a duplicate row. The current annotation file has no correction-register row.
 - Phone-like excerpts are redacted. Stance and XLM-RoBERTa are stated as absent rather than filled in.
 
 ## Bugs found and fixed
@@ -69,9 +64,9 @@ Tested in the browser at `http://127.0.0.1:8502` on 19 October 2026.
 | Overview | Loaded. Counts 5,292, 3,500 annotated, 5,292 predictions, 4 cited topics, 19 posts, 0 direct links. |
 | Data Exploration | Loaded. Missing cells are 0. Exact duplicates are 0. Within-post duplicate IDs are 0. Search `POST_08` returned 1 post and 236 comments. |
 | Topics | Loaded. The cited model is NMF k=4. |
-| Classification | Loaded. Policy-relevance test macro-F1 0.665 is on the page. |
+| Classification | Reads `outputs/05_model_development/20261125_final`. Policy test macro-F1 is 0.693. |
 | Feedback Loop | Loaded. POST_08 date 2026-07-06, POST_17 qualifier, and the sequence figure are present. |
-| Data Quality | Loaded after the Arrow fix. The status table shows 5,292 raw rows. ANN_0031 is on the page. |
+| Data Quality | The status table shows 5,292 raw rows. The annotation file has no correction-register row. |
 | Dark theme | Main background became `#0d2233` and cards `#14324a`. |
 | Mobile width 390 | No page-level horizontal scroll. KPI cards wrap. Sidebar collapses and can be opened; all six links remain available. |
 | Phone numbers | No phone number was rendered in the checked page text. |
@@ -102,4 +97,4 @@ Then open `http://localhost:8501`.
 - Pre/post shares do not measure an effect of RESP_001.
 - POST_17 and POST_18 captions come from researcher screenshots. The POST_17 reel audio was not transcribed.
 - POST_08 remains 2026-07-06 and unlinked.
-- The cited topic model is LDA k=6 from `20261019_topic_models_function_words`. The earlier NMF run is not the cited solution.
+- The cited topic model is NMF k=4 in `outputs/04_topic_modeling/20261125_final`. LDA k=6 was compared and was not selected.

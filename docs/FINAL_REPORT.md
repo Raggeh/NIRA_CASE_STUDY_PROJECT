@@ -2,33 +2,32 @@
 
 ## Question and data
 
-The study asks how public Facebook comments on posts about Somalia's National Identification and Registration Authority can be described, classified, and placed next to inventoried institutional communications. The working corpus contains 5292 comments under 19 source posts. The annotated file contains 3500 comments, which is 66.1% of the corpus. Every annotated key matches a raw comment, and every row has an annotation id.
+The study asks how public Facebook comments on posts about Somalia's National Identification and Registration Authority can be described, classified, and placed next to inventoried institutional communications. The working corpus contains 5292 comments under 19 source posts. The annotation file is `Annotation Dataset/NIRA_Project_Final_Annotation.xlsx`: 3500 comments, which is 66.1% of the corpus. Every annotated key matches a raw comment, and every row has an annotation id.
 
 `collection_date` is the time the comment file was collected. `publication_date_register` is the researcher-verified publication date of the source post. The two dates are not substitutes.
 
 ## Annotation
 
-All 3,500 annotation keys match a raw comment. Text match on the joined rows: 3475 exact, 12 whitespace only, and 13 character differences. The annotated share is no longer about 22 to 23 percent of every post, because the file now covers 3,500 comments.
+All 3,500 annotation keys match a raw comment. The link is `outputs/01_data_preparation/20261125_final/annotation_linked.csv`, built from `NIRA_Project_Final_Annotation.xlsx`. Text match on the joined rows: 3475 exact, 12 whitespace only, and 13 character differences. The annotated share of each post is between 65.3% and 66.3%.
 
-The four supervised tasks are `policy_relevance`, `feedback_type`, `topic`, and `sentiment`. `actor` is stored in the file and is not one of those tasks. No class was merged.
+The four supervised tasks are `policy_relevance`, `feedback_type`, `topic`, and `sentiment`. Actor was coded by the first annotator only. It is not a column in `NIRA_Project_Final_Annotation.xlsx`, no kappa is reported for it, and it is not a trained task. The first annotator's counts were uncertain 1,721, citizen 760, government 545, NIRA 411, and official 63. No class was merged.
 
 | field | n_classes | largest_class | largest_n | smallest_class | smallest_n | largest_share_of_annotated |
 | --- | --- | --- | --- | --- | --- | --- |
-| actor | 5 | uncertain | 1721 | official | 63 | 0.492 |
-| feedback_type | 8 | complaint | 822 | information | 73 | 0.235 |
-| policy_relevance | 3 | relevant | 2573 | uncertain | 241 | 0.735 |
-| sentiment | 4 | negative | 1775 | uncertain | 120 | 0.507 |
-| topic | 8 | other | 964 | documentation_requirements | 33 | 0.275 |
+| feedback_type | 8 | complaint | 847 | information | 73 | 0.242 |
+| policy_relevance | 3 | relevant | 2578 | uncertain | 242 | 0.737 |
+| sentiment | 4 | negative | 1793 | uncertain | 120 | 0.512 |
+| topic | 8 | other | 956 | documentation_requirements | 33 | 0.273 |
 
 Shares use the 3,500 labeled comments as the denominator.
 
 ## Unsupervised topics
 
-The cited topic run is `20261111_3500`. It compares LDA, NMF, LSA, and clustering models that use AfriBERTa and AfroXLMR. All of them were fit on the 5,292 comments. Manual topic labels were not a training target. The comparison removes 56 grammatical tokens listed in `config/somali_function_words.csv`. The selected model is the coverage-eligible candidate with the highest c_npmi. Coverage-eligible means a topic was assigned to at least 80 percent of the 5,292 comments. Somali-trained encoders were in that pool and were not selected, because their coherence was lower.
+The cited topic files are in `outputs/04_topic_modeling/20261125_final`. The model is NMF k=4, copied from the earlier topic fit and not refit on the final labels. It compares LDA, NMF, LSA, and clustering models that use AfriBERTa and AfroXLMR. All of them were fit on the 5,292 comments. Manual topic labels were not a training target. The comparison removes 56 grammatical tokens listed in `config/somali_function_words.csv`. The selected model is the coverage-eligible candidate with the highest c_npmi. Coverage-eligible means a topic was assigned to at least 80 percent of the 5,292 comments. Somali-trained encoders were in that pool and were not selected, because their coherence was lower.
 
 Selected model: NMF (k=4). Coherence c_npmi: 0.084. Diversity: 0.950. Coverage: 0.985. Unassigned comments: 81. The cited model is a bag-of-words model, not a Somali-trained encoder.
 
-The previous cited run, `20261019_topic_models_function_words`, selected LDA k=6 with coherence 0.023. That run stays saved and is not the cited solution.
+LDA k=6 was compared and was not selected. Its coherence in the saved comparison is 0.031. The cited model is NMF k=4.
 
 | topic_id | n_comments | provisional_term_label |
 | --- | --- | --- |
@@ -45,10 +44,10 @@ Each task compared five models on a stratified split of the 3,500 labeled commen
 
 | task | selected_model | validation_macro_f1 | test_macro_f1 | test_weighted_f1 | test_accuracy |
 | --- | --- | --- | --- | --- | --- |
-| policy_relevance | logistic_regression | 0.687 | 0.665 | 0.840 | 0.837 |
-| feedback_type | logistic_regression | 0.646 | 0.701 | 0.737 | 0.734 |
-| topic | complement_nb | 0.669 | 0.578 | 0.679 | 0.691 |
-| sentiment | complement_nb | 0.687 | 0.641 | 0.780 | 0.793 |
+| policy_relevance | logistic_regression | 0.632 | 0.693 | 0.856 | 0.857 |
+| feedback_type | logistic_regression | 0.626 | 0.663 | 0.716 | 0.710 |
+| topic | linear_svc | 0.560 | 0.596 | 0.683 | 0.684 |
+| sentiment | linear_svc | 0.707 | 0.650 | 0.797 | 0.803 |
 
 The TF-IDF classifiers use letter tokens and word bigrams. They do not use the function-word list, because that list was applied only to the topic models. The fifth model is logistic regression on the multilingual embeddings. Its score does not show that those embeddings understand Somali.
 
@@ -60,10 +59,10 @@ The selected model for each task was refit on all 3,500 labeled comments and the
 
 | task | selected_model | heldout_test_macro_f1 | refit_agreement_macro_f1 | refit_agreement_accuracy |
 | --- | --- | --- | --- | --- |
-| policy_relevance | logistic_regression | 0.665 | 0.937 | 0.965 |
-| feedback_type | logistic_regression | 0.701 | 0.910 | 0.916 |
-| topic | complement_nb | 0.578 | 0.931 | 0.935 |
-| sentiment | complement_nb | 0.641 | 0.897 | 0.936 |
+| policy_relevance | logistic_regression | 0.693 | 0.935 | 0.963 |
+| feedback_type | logistic_regression | 0.663 | 0.899 | 0.908 |
+| topic | linear_svc | 0.596 | 0.988 | 0.985 |
+| sentiment | linear_svc | 0.650 | 0.988 | 0.993 |
 
 The comment sample contains 30 unique comments: 10 annotated, 10 unlabeled, and 10 further comments. Overlap between the samples is 0. Every comment receives a prediction. The third sample is not a separate dataset. It is ten further comments drawn from the rows that were not already sampled. The unsupervised topic columns come from notebook 04 and use a different label space from the manual topic classes.
 
@@ -73,15 +72,15 @@ Predicted labels are model output. They were not manually corrected.
 
 No inventoried communication is classed as a direct response to a source post or to a comment. Shared topic and nearby dates remain comparisons.
 
-Posts classed as thematically related: 4. Posts classed as temporally associated: 1. Posts classed as unlinked or unresolved: 14. Posts classed as directly linked: 0.
+Posts classed as thematically related: 4. Posts classed as temporally associated: 1. Posts classed as unlinked or unresolved: 14. Posts classed as directly linked: 0. Comments inherit the publication date of their source post. Before 2025-11-03 there are 9 posts and 3,236 comments, of which 2,141 are labeled. POST_09 is the event day: 212 comments, of which 140 are labeled. After that day there are 9 posts and 1,844 comments, of which 1,219 are labeled. `collection_date` is not used. The split is saved in `outputs/07_events_timeline/20261125_final/event_period_summary.csv`.
 
 POST_09 shares the registered date of the inventoried SONNA item RESP_001, 2025-11-03. POST_01 and POST_04 are topic comparisons with named inventory rows. The register already says those comparisons do not establish causality.
 
-That named comparison is drawn in `outputs/07_events_timeline/20261019_events/figures/feedback_loop_sequence.png`. Reading left to right, the boxes are POST_01 on 27 October 2025, RESP_001 and POST_09 on 3 November 2025, POST_04 on 4 November 2025, and RESP_002 on 10 November 2025. The arrow from POST_01 to RESP_001 is thematic, and the SONNA page does not name POST_01. The arrow between RESP_001 and POST_09 is temporal because the dates match. The arrow from RESP_001 to POST_04 is the next day and is thematic. The arrow from POST_04 to RESP_002 is thematic, and the NIRA page names no corpus post. The dashed line is publication order. Directly linked posts in the figure are 0. POST_03 and POST_12 are also thematically related, but the register does not name RESP_001 or RESP_002 for them, so they are not drawn.
+That named comparison is drawn in `outputs/07_events_timeline/20261125_final/figures/feedback_loop_sequence.png`. Reading left to right, the boxes are POST_01 on 27 October 2025, RESP_001 and POST_09 on 3 November 2025, POST_04 on 4 November 2025, and RESP_002 on 10 November 2025. The arrow from POST_01 to RESP_001 is thematic, and the SONNA page does not name POST_01. The arrow between RESP_001 and POST_09 is temporal because the dates match. The arrow from RESP_001 to POST_04 is the next day and is thematic. The arrow from POST_04 to RESP_002 is thematic, and the NIRA page names no corpus post. The dashed line is publication order. Directly linked posts in the figure are 0. POST_03 and POST_12 are also thematically related, but the register does not name RESP_001 or RESP_002 for them, so they are not drawn.
 
-The dashboard split uses RESP_001 on 2025-11-03 as the event. A comment inherits the publication date of its source post. Comments on posts published before that day are pre-event: 9 posts and 3,236 comments, of which 734 are annotated. POST_09 is the event day: 212 comments, of which 48 are annotated. Comments on posts published after that day are post-event: 9 posts and 1,844 comments, of which 417 are annotated. `collection_date` is not used. The split is saved in `outputs/07_events_timeline/20261019_events/event_period_summary.csv` and `comments_by_event_period.csv`. Predicted label shares by period are saved beside those files. They describe the model output in each period. They do not measure an effect of RESP_001.
+The dashboard split uses RESP_001 on 2025-11-03 as the event. A comment inherits the publication date of its source post. The labeled counts for that split are the 2,141, 140, and 1,219 above. `collection_date` is not used. Predicted label shares by period describe the model output in each period. They do not measure an effect of RESP_001.
 
-On 2026-10-19 the five inventory pages were opened. All five titles match the inventory. RESP_001 is dated 3 November 2025 and says the Director General addressed social media images of night queues; it does not name a Facebook URL from this corpus. RESP_002 is dated 10 November 2025 and describes the Wadajir day-and-night center. RESP_003 is dated 22 September 2025 and describes the Heliwaa center. RESP_004 lists 30 July 2025, while the notice body says 29 July 2025, and the bank measure is stated to start on 1 September 2025. RESP_005 is dated 1 January 2026 and says the domestic-travel ID requirement was postponed to 1 March 2026. None of these pages names a source post in the corpus, so no post is classed as directly linked. The check is saved in `outputs/07_events_timeline/20261019_source_check/source_check.json`.
+On 2026-10-19 the five inventory pages were opened. All five titles match the inventory. RESP_001 is dated 3 November 2025 and says the Director General addressed social media images of night queues; it does not name a Facebook URL from this corpus. RESP_002 is dated 10 November 2025 and describes the Wadajir day-and-night center. RESP_003 is dated 22 September 2025 and describes the Heliwaa center. RESP_004 lists 30 July 2025, while the notice body says 29 July 2025, and the bank measure is stated to start on 1 September 2025. RESP_005 is dated 1 January 2026 and says the domestic-travel ID requirement was postponed to 1 March 2026. None of these pages names a source post in the corpus, so no post is classed as directly linked. The check is saved in `outputs/07_events_timeline/20261125_final/source_check.json`.
 
 POST_17 and POST_18 captions were not returned by the automated page fetch. The researcher then supplied screenshots of the open posts. The POST_17 Reel caption reads: "Safaaradda Soomaaliya ee dalka Uganda oo bilowday inay bixiso Kaarka Aqoonsiga Qaranka ee NIRA." The POST_18 caption, dated March 19 on the screen, reads: "Ciid Mubarak! Hay'adda NIRA waxa ay shacabka Soomaaliyeed iyo guud ahaan ummadda Islaamka ugu hambalyaynaysaa Munaasabadda Barakaysan ee Ciidul-Fidriga." The graphic also reads CIID MUBAARAK. The reel audio was not transcribed. The screenshots are stored in `evidence/post_screenshots/`.
 
@@ -89,7 +88,7 @@ POST_10 has a confirmed publication date of 2025-10-18. The policy claim in that
 
 ## Figures
 
-The figures are saved from the tables above in `outputs/08_results_visualization/20261019_figures/figures/`.
+The current scores and label counts are the tables above. The dashboard draws those charts from the `20261125_final` tables. The sequence figure is `outputs/07_events_timeline/20261125_final/figures/feedback_loop_sequence.png`.
 
 | file | reads_as |
 | --- | --- |
@@ -113,14 +112,11 @@ The figures are saved from the tables above in `outputs/08_results_visualization
 
 ## Files
 
-- Data preparation: `outputs/01_data_preparation/20261018_content_review/`
-- Exploratory analysis: `outputs/02_eda/20261111_3500/`
-- Annotation audit: `outputs/03_annotation/20261111_3500/`
-- Topic models: `outputs/04_topic_modeling/20261111_3500/`
-- Earlier topic run, kept for comparison: `outputs/04_topic_modeling/20261019_topic_models_function_words/`
-- Supervised comparison: `outputs/05_model_development/20261111_3500/`
-- Predictions: `outputs/06_results_predictions/20261111_3500/`
-- Events and the pre-event, event-day, and post-event split: `outputs/07_events_timeline/20261111_3500/`
-- Page check: `outputs/07_events_timeline/20261019_source_check/`
-- Figures: `outputs/08_results_visualization/20261019_figures/`
+- Data preparation and the 3,500-row link: `outputs/01_data_preparation/20261125_final/` from `NIRA_Project_Final_Annotation.xlsx`. The working copy of the 5,292 comments is in that same folder.
+- Exploratory analysis: `outputs/02_eda/20261125_final/`
+- Annotation audit: `outputs/03_annotation/20261125_final/`
+- Topic models: `outputs/04_topic_modeling/20261125_final/`. The cited model is NMF k=4.
+- Supervised comparison: `outputs/05_model_development/20261125_final/`
+- Predictions: `outputs/06_results_predictions/20261125_final/`
+- Events, the page check, and the sequence figure: `outputs/07_events_timeline/20261125_final/`
 

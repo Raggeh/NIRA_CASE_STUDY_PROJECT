@@ -67,8 +67,8 @@ def _text_match(path):
 def load():
     eda = json.loads((ROOT / "outputs/02_eda/20261125_final/eda_findings.json").read_text(encoding="utf-8"))
     posts = pd.read_csv(ROOT / "outputs/02_eda/20261125_final/eda_post_summary.csv")
-    timeline = pd.read_csv(ROOT / "outputs/07_events_timeline/20261019_events/post_timeline.csv")
-    periods = pd.read_csv(ROOT / "outputs/07_events_timeline/20261019_events/posts_by_event_period.csv")
+    timeline = pd.read_csv(ROOT / "outputs/07_events_timeline/20261125_final/post_timeline.csv")
+    periods = pd.read_csv(ROOT / "outputs/07_events_timeline/20261125_final/posts_by_event_period.csv")
     topic_selection = json.loads(
         (ROOT / "outputs/04_topic_modeling/20261125_final/topic_model_selection.json").read_text(encoding="utf-8")
     )
@@ -108,7 +108,7 @@ def load():
         (ROOT / "outputs/05_model_development/20261125_final/heldout_classification_reports.json").read_text(encoding="utf-8")
     )
     quality = json.loads(
-        (ROOT / "outputs/01_data_preparation/20261018_content_review/raw_quality_summary.json").read_text(encoding="utf-8")
+        (ROOT / "outputs/01_data_preparation/20261125_final/raw_quality_summary.json").read_text(encoding="utf-8")
     )
     relation = json.loads(
         (ROOT / "outputs/03_annotation/20261125_final/annotation_relation.json").read_text(encoding="utf-8")
@@ -119,10 +119,11 @@ def load():
     relation.setdefault(
         "decision",
         "All 3,500 annotated keys match a raw comment. Every row has an annotation id. "
-        "No codebook file and no second coder are stored.",
+        "Raggeh and Sodal coded the four tasks. No codebook file is stored. "
+        "Actor is not in the final workbook.",
     )
     source_check = json.loads(
-        (ROOT / "outputs/07_events_timeline/20261019_source_check/source_check.json").read_text(encoding="utf-8")
+        (ROOT / "outputs/07_events_timeline/20261125_final/source_check.json").read_text(encoding="utf-8")
     )
     winners = {task: body["model"] for task, body in selected["tasks"].items()}
     matrices = {
@@ -139,11 +140,8 @@ def load():
         "root": ROOT,
         "eda": eda,
         "posts": joined.sort_values("publication_date_register"),
-        "lengths": pd.read_csv(ROOT / "outputs/02_eda/20261018_eda/eda_length_summary.csv"),
+        "lengths": pd.read_csv(ROOT / "outputs/02_eda/20261125_final/eda_length_summary.csv"),
         "topic_selection": topic_selection,
-        "prior_topic_selection": json.loads(
-            (ROOT / "outputs/04_topic_modeling/20261019_topic_models_function_words/topic_model_selection.json").read_text(encoding="utf-8")
-        ),
         "topic_comparison": pd.read_csv(ROOT / "outputs/04_topic_modeling/20261125_final/topic_model_comparison.csv"),
         "topic_terms": pd.read_csv(ROOT / "outputs/04_topic_modeling/20261125_final/selected_topic_terms.csv"),
         "examples": examples,
@@ -166,13 +164,13 @@ def load():
         "n_predictions": int(len(predictions)),
         "n_predicted_annotated": int(predictions["is_annotated"].sum()),
         "assignment_counts": assignment_counts,
-        "linkage": pd.read_csv(ROOT / "outputs/07_events_timeline/20261019_events/linkage_class_counts.csv"),
+        "linkage": pd.read_csv(ROOT / "outputs/07_events_timeline/20261125_final/linkage_class_counts.csv"),
         "period_definition": json.loads(
             (ROOT / "outputs/07_events_timeline/20261125_final/event_period_definition.json").read_text(encoding="utf-8")
         ),
         "period_summary": pd.read_csv(ROOT / "outputs/07_events_timeline/20261125_final/event_period_summary.csv"),
         "period_shares": pd.read_csv(ROOT / "outputs/07_events_timeline/20261125_final/predicted_label_shares_by_event_period.csv"),
-        "responses": pd.read_csv(ROOT / "outputs/07_events_timeline/20261019_events/response_inventory_timeline.csv"),
+        "responses": pd.read_csv(ROOT / "outputs/07_events_timeline/20261125_final/response_inventory_timeline.csv"),
         "source_posts": pd.DataFrame(source_check["posts"]),
         "named_posts": timeline.loc[timeline["comparison_response_ids"].fillna("").str.len() > 0],
         "quality": quality,
@@ -180,5 +178,5 @@ def load():
         "text_match": _text_match(ROOT / "outputs/03_annotation/20261125_final/annotation_text_match_counts.csv"),
         "corrections": pd.read_csv(ROOT / "outputs/03_annotation/20261125_final/annotation_corrections.csv"),
         "balance": pd.read_csv(ROOT / "outputs/03_annotation/20261125_final/annotation_class_balance.csv"),
-        "figure": ROOT / "outputs/07_events_timeline/20261019_events/figures/feedback_loop_sequence.png",
+        "figure": ROOT / "outputs/07_events_timeline/20261125_final/figures/feedback_loop_sequence.png",
     }

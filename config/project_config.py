@@ -9,15 +9,10 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 RAW_CORPUS_CSV = PROJECT_ROOT / "NIRA_Facebook_Datasets_5292.csv"
-ANNOTATION_XLSX = (
+ANNOTATION_FILE = (
     PROJECT_ROOT
     / "Annotation Dataset"
-    / "NIRA_Annotation_Master_1199_Modeling_final.xlsx"
-)
-ANNOTATION_CSV = (
-    PROJECT_ROOT
-    / "Annotation Dataset"
-    / "NIRA_Annotated_Master_3500.csv"
+    / "NIRA_Project_Final_Annotation.xlsx"
 )
 PUBLICATION_XLSX = PROJECT_ROOT / "Publication Date Verification.xlsx"
 
@@ -47,7 +42,6 @@ ANNOTATION_COLUMNS = [
     "feedback_type",
     "topic",
     "sentiment",
-    "actor",
     "annotation_status",
 ]
 

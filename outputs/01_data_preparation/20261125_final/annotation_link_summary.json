@@ -1,0 +1,18 @@
+{
+  "run_id": "20261125_final",
+  "annotation_file": "Annotation Dataset/NIRA_Project_Final_Annotation.xlsx",
+  "raw_working_corpus": "outputs/01_data_preparation/20261125_final/raw_corpus_working.csv",
+  "annotated_rows": 3500,
+  "raw_rows": 5292,
+  "keys_matched": 3500,
+  "keys_unmatched": 0,
+  "text_match": {
+    "exact": 3475,
+    "newline_or_whitespace": 12,
+    "content_difference": 13
+  },
+  "annotated_share_of_raw": 0.6613756613756614,
+  "annotated_share_by_post_min": 0.6526315789473685,
+  "annotated_share_by_post_max": 0.6630434782608695,
+  "actor_column_present": false
+}
